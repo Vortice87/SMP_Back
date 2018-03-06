@@ -1,8 +1,11 @@
 package com.vortice.SourcingManager.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +16,7 @@ import com.vortice.SourcingManager.services.UserService;
 
 @Controller
 @RequestMapping("/users")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	
 	@Autowired
@@ -24,12 +27,46 @@ public class UserController {
 	public User loginAuth(@RequestBody User user) {
 		
 		User userAuth = userService.loginAuth(user.getUsername(), user.getPassword());
+
+		return userAuth;
+
+	}
+	
+	@PostMapping("/create")
+	@ResponseBody
+	public boolean createUser(@RequestBody User user) {
 		
-		if(userAuth != null) {
-			return userAuth;
-		}
+		boolean success = userService.createUser(user);
+		return success;
 		
-		return null;
+	}
+	
+	@PostMapping("/delete")
+	@ResponseBody
+	public boolean deleteUser(@RequestBody User user) {
+		
+		boolean success = userService.deleteUser(user);
+		return success;
+		
+	}
+	
+	@PostMapping("/update")
+	@ResponseBody
+	public boolean modifyUser(@RequestBody User user) {
+		
+		boolean success = userService.updateUser(user);
+		return success;
+		
+	}	
+	
+	@GetMapping("/all")
+	@ResponseBody
+	public List<User> getAllUsers(){
+		
+		List<User> userList = userService.getAllUsers();
+		
+		return userList;
+		
 	}
 
 }
