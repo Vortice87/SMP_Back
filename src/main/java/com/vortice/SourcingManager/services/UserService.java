@@ -41,14 +41,25 @@ public class UserService implements UserServiceImpl {
 	}
 
 	public boolean createUser(User user) {
+				
 		this.dao.save(user);
 		boolean success = this.dao.exists(user.getId());
+
 		return success;
 	}
 	
-	public boolean deleteUser(User user) {
-		this.dao.delete(user.getId());
-		boolean success = this.dao.exists(user.getId());
+	public boolean userExists(String username) {
+		
+		if(this.dao.findByUsername(username) != null) {
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public boolean deleteUser(int id) {
+		this.dao.delete(id);
+		boolean success = this.dao.exists(id);
 		return success;
 	}
 	

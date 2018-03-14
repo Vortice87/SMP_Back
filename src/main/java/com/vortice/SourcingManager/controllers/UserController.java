@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,11 +42,23 @@ public class UserController {
 		
 	}
 	
-	@PostMapping("/delete")
+	@GetMapping("/exists/{username:.+}")
 	@ResponseBody
-	public boolean deleteUser(@RequestBody User user) {
+	public boolean userExists(@PathVariable String username) {
 		
-		boolean success = userService.deleteUser(user);
+		if(userService.userExists(username)) {
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
+	@GetMapping("/delete/{id}")
+	@ResponseBody
+	public boolean deleteUser(@PathVariable int id) {
+		
+		boolean success = userService.deleteUser(id);
 		return success;
 		
 	}
