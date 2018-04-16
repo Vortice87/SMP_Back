@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name="CV")
 public class Cv {
@@ -17,7 +19,11 @@ public class Cv {
 	
 	@Column(unique = true, nullable = false )
     private String name;
-
+	
+	@ManyToOne(targetEntity = Request.class)
+	@JoinColumn(name = "id_cv", referencedColumnName = "id")
+	private Request request;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -40,6 +46,14 @@ public class Cv {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Request getRequest() {
+		return request;
+	}
+
+	public void setRequest(Request request) {
+		this.request = request;
 	}
 	
 	

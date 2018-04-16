@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name="PROVIDER")
 public class Provider {
@@ -14,6 +16,11 @@ public class Provider {
 	
 	@Column(unique = true, nullable = false )
 	private String providerName;
+
+
+	@ManyToOne(targetEntity = Request.class)
+	@JoinColumn(name = "id_prov", referencedColumnName = "id" )
+	private Request request;
 
 	public Integer getId() {
 		return id;
@@ -30,6 +37,16 @@ public class Provider {
 	public void setProviderName(String providerName) {
 		this.providerName = providerName;
 	}
+
+	public Request getRequest() {
+		return request;
+	}
+
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+	
+	
 		
 	
 }

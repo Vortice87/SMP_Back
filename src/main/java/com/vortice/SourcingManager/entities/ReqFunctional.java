@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name="REQFUNCTIONAL")
 public class ReqFunctional {
@@ -22,6 +24,10 @@ public class ReqFunctional {
 	
 	@Column(nullable = false )
 	private String reqdes;
+
+	@ManyToOne(targetEntity = Request.class)
+	@JoinColumn(name = "id_funct", referencedColumnName = "id")
+	private Request request;
 
 	public Integer getId() {
 		return id;
@@ -62,6 +68,16 @@ public class ReqFunctional {
 	public void setReqdes(String reqdes) {
 		this.reqdes = reqdes;
 	}
+
+	public Request getRequest() {
+		return request;
+	}
+
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+	
+	
 	
 	
 
