@@ -26,10 +26,6 @@ public class ReqTechnical {
 	@Column(nullable = false )
 	private String reqdes;
 	
-	@ManyToOne(targetEntity = Request.class)
-	@JoinColumn(name = "id_tech", referencedColumnName = "id")
-	private Request request;
-
 	public Integer getId() {
 		return id;
 	}
@@ -69,18 +65,5 @@ public class ReqTechnical {
 	public void setReqdes(String reqdes) {
 		this.reqdes = reqdes;
 	}
-
-	public Request getRequest() {
-		return request;
-	}
-
-	public void setRequest(Request request) {
-		this.request = request;
-	}
-	
-	
-	
-	
-	
 
 }

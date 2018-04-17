@@ -26,7 +26,7 @@ public class ReqFunctional {
 	private String reqdes;
 
 	@ManyToOne(targetEntity = Request.class)
-	@JoinColumn(name = "id_funct", referencedColumnName = "id")
+	@JoinColumn(name = "req_functional", referencedColumnName = "id")
 	private Request request;
 
 	public Integer getId() {
@@ -68,18 +68,6 @@ public class ReqFunctional {
 	public void setReqdes(String reqdes) {
 		this.reqdes = reqdes;
 	}
-
-	public Request getRequest() {
-		return request;
-	}
-
-	public void setRequest(Request request) {
-		this.request = request;
-	}
-	
-	
-	
-	
 
 }
 

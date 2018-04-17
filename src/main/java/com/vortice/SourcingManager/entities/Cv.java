@@ -1,5 +1,6 @@
 package com.vortice.SourcingManager.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +21,7 @@ public class Cv {
 	@Column(unique = true, nullable = false )
     private String name;
 	
-	@ManyToOne(targetEntity = Request.class)
-	@JoinColumn(name = "id_cv", referencedColumnName = "id")
+	@ManyToOne(targetEntity = Request.class, cascade = CascadeType.ALL)
 	private Request request;
 	
 	public Integer getId() {
@@ -47,15 +47,5 @@ public class Cv {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Request getRequest() {
-		return request;
-	}
-
-	public void setRequest(Request request) {
-		this.request = request;
-	}
-	
-	
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity(name="REQUEST")
@@ -28,10 +29,6 @@ public class Request {
     private String  substitution;
     
     private String suggestedService;
-    
-	@OneToMany(targetEntity = Provider.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_prov", referencedColumnName = "id")
-    private List<Provider> provider;
     
     private String sugSerJust;
     
@@ -72,15 +69,7 @@ public class Request {
     
 	@Column(nullable = false)
     private String descProject;
-    
-	@OneToMany(targetEntity = ReqFunctional.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_funct", referencedColumnName = "id")
-    private List<ReqFunctional> reqFuncts;
-    
-	@OneToMany(targetEntity = ReqTechnical.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_tech", referencedColumnName = "id")
-    private List<ReqTechnical> reqTechs;
-    
+        
 	@Column(nullable = false)
     private String descTask;
     
@@ -102,18 +91,22 @@ public class Request {
     private String mobile;
     
     private String reasonDotation;
+
+    private String guards;
     
-	@OneToMany(targetEntity = LanguagesRequest.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_lang", referencedColumnName = "id")
+    @OneToMany(targetEntity = LanguagesRequest.class, cascade = CascadeType.ALL)
     private List<LanguagesRequest> languages;
     
-    private String guards;
-      
-    
-	@OneToMany(targetEntity = Cv.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_cv", referencedColumnName = "id")
+    @OneToMany(targetEntity = Cv.class, cascade = CascadeType.ALL)
     private List<Cv> cvs;
-
+    
+    @OneToMany(targetEntity = ReqFunctional.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "req_functional", referencedColumnName = "id")
+    private List<ReqFunctional> reqFunctional;
+//    
+//    @OneToMany(targetEntity = ReqTechnical.class, cascade = CascadeType.ALL)
+//    private List<ReqTechnical> reqTech;
+      
 	public Integer getId() {
 		return id;
 	}
@@ -357,52 +350,4 @@ public class Request {
 	public void setGuards(String guards) {
 		this.guards = guards;
 	}
-
-	public List<Provider> getProvider() {
-		return provider;
-	}
-
-	public void setProvider(List<Provider> provider) {
-		this.provider = provider;
-	}
-
-	public List<ReqFunctional> getReqFuncts() {
-		return reqFuncts;
-	}
-
-	public void setReqFuncts(List<ReqFunctional> reqFuncts) {
-		this.reqFuncts = reqFuncts;
-	}
-
-	public List<ReqTechnical> getReqTechs() {
-		return reqTechs;
-	}
-
-	public void setReqTechs(List<ReqTechnical> reqTechs) {
-		this.reqTechs = reqTechs;
-	}
-
-	public List<LanguagesRequest> getLanguages() {
-		return languages;
-	}
-
-	public void setLanguages(List<LanguagesRequest> languages) {
-		this.languages = languages;
-	}
-
-	public List<Cv> getCvs() {
-		return cvs;
-	}
-
-	public void setCvs(List<Cv> cvs) {
-		this.cvs = cvs;
-	}
-
-
-
-
-	
-	
-
-
 }

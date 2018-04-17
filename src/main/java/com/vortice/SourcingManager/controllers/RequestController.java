@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vortice.SourcingManager.entities.Request;
-import com.vortice.SourcingManager.services.RequestService;
+import com.vortice.SourcingManager.services.impl.RequestServiceImpl;
 
 @Controller
 @RequestMapping("/requests")
@@ -17,7 +17,7 @@ import com.vortice.SourcingManager.services.RequestService;
 public class RequestController {
 	
 	@Autowired
-	private RequestService requestService;
+	private RequestServiceImpl requestService;
 	
 	@PostMapping("/create")
 	@ResponseBody

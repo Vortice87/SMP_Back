@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vortice.SourcingManager.entities.User;
-import com.vortice.SourcingManager.services.UserService;
+import com.vortice.SourcingManager.services.impl.UserServiceImpl;
 
 @Controller
 @RequestMapping("/users")
@@ -21,7 +21,7 @@ import com.vortice.SourcingManager.services.UserService;
 public class UserController {
 	
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 	
 	@PostMapping("/authentication")
 	@ResponseBody

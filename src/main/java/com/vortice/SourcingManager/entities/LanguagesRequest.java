@@ -17,10 +17,6 @@ public class LanguagesRequest {
 	@Column(unique = true, nullable = false )
 	private String language;
 
-	@ManyToOne(targetEntity = Request.class)
-	@JoinColumn(name = "id_lang", referencedColumnName = "id")
-	private Request request;
-
 	public Integer getId() {
 		return id;
 	}
@@ -37,15 +33,4 @@ public class LanguagesRequest {
 		this.language = language;
 	}
 
-	public Request getRequest() {
-		return request;
-	}
-
-	public void setRequest(Request request) {
-		this.request = request;
-	}
-	
-	
-	
-	
 }
