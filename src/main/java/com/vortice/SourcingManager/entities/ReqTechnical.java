@@ -1,5 +1,6 @@
 package com.vortice.SourcingManager.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,25 +14,26 @@ public class ReqTechnical {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer id_tech;
 	
-	@Column(unique = true, nullable = false )
 	private String techscope;
 	
 	private String others;
 	
-	@Column(nullable = false )
-	private int exp;
+	private String exp;
 	
-	@Column(nullable = false )
 	private String reqdes;
 	
-	public Integer getId() {
-		return id;
+	@ManyToOne(targetEntity = Request.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "req_tech", referencedColumnName = "id")
+	private Request request;
+
+	public Integer getId_tech() {
+		return id_tech;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId_tech(Integer id_tech) {
+		this.id_tech = id_tech;
 	}
 
 	public String getTechscope() {
@@ -50,11 +52,11 @@ public class ReqTechnical {
 		this.others = others;
 	}
 
-	public int getExp() {
+	public String getExp() {
 		return exp;
 	}
 
-	public void setExp(int exp) {
+	public void setExp(String exp) {
 		this.exp = exp;
 	}
 
@@ -66,4 +68,13 @@ public class ReqTechnical {
 		this.reqdes = reqdes;
 	}
 
+	public Request getRequest() {
+		return request;
+	}
+
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+
+	
 }

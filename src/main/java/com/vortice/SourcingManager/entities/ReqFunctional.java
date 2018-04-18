@@ -1,5 +1,6 @@
 package com.vortice.SourcingManager.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,37 +13,35 @@ public class ReqFunctional {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer id_funct;
 	
-	@Column(unique = true, nullable = false )
-	private String functScope;
+	private String functscope;
 	
 	private String others;
 	
-	@Column(nullable = false )
-	private int exp;
+	private String exp;
 	
-	@Column(nullable = false )
 	private String reqdes;
 
-	@ManyToOne(targetEntity = Request.class)
-	@JoinColumn(name = "req_functional", referencedColumnName = "id")
+	@ManyToOne(targetEntity = Request.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "req_funct", referencedColumnName = "id")
 	private Request request;
 
-	public Integer getId() {
-		return id;
+	public Integer getId_funct() {
+		return id_funct;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId_funct(Integer id_funct) {
+		this.id_funct = id_funct;
 	}
 
-	public String getFunctScope() {
-		return functScope;
+
+	public String getFunctscope() {
+		return functscope;
 	}
 
-	public void setFunctScope(String functScope) {
-		this.functScope = functScope;
+	public void setFunctscope(String functscope) {
+		this.functscope = functscope;
 	}
 
 	public String getOthers() {
@@ -53,11 +52,11 @@ public class ReqFunctional {
 		this.others = others;
 	}
 
-	public int getExp() {
+	public String getExp() {
 		return exp;
 	}
 
-	public void setExp(int exp) {
+	public void setExp(String exp) {
 		this.exp = exp;
 	}
 
@@ -69,6 +68,15 @@ public class ReqFunctional {
 		this.reqdes = reqdes;
 	}
 
+	public Request getRequest() {
+		return request;
+	}
+
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+
+	
 }
 
 

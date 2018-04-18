@@ -6,9 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+
 
 @Entity(name="PROVIDER")
 public class Provider {
@@ -17,15 +16,17 @@ public class Provider {
 	@GeneratedValue
 	private Integer id;
 	
-	@Column(unique = true, nullable = false )
 	private String providerName;
+
+	@ManyToMany(mappedBy = "provider")
+	private List<Request> requests;
 
 	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer id_prov) {
+		this.id = id_prov;
 	}
 
 	public String getProviderName() {
@@ -35,5 +36,15 @@ public class Provider {
 	public void setProviderName(String providerName) {
 		this.providerName = providerName;
 	}
+
+	public List<Request> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
+	}
+	
+
 	
 }

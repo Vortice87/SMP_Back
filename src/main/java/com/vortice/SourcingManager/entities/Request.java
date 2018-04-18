@@ -6,107 +6,116 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-@Entity(name="REQUEST")
+@Entity(name = "REQUEST")
 public class Request {
-	
-	
+
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
-	@Column(nullable = false)
-    private String petitioner;
-    
-	@Column(nullable = false)
-    private String reason;
-    
-    private String  substitution;
-    
-    private String suggestedService;
-    
-    private String sugSerJust;
-    
-    private String observations;
-    
-	@Column(nullable = false)
-    private String categoryFunc;
-    
-    private int limitRate;
-    
-	@Column(nullable = false)
-    private String nResources;
-    
-	@Column(nullable = false)
-    private String profile;
-    
-	@Column(nullable = false)
-    private String technology;
-    
-	@Column(nullable = false)
-    private Date startDate;
-    
-    private Date endDate;
-    
-	@Column(nullable = false)
-    private String area;
-    
-	@Column(nullable = false)
-    private String department;
-    
-	@Column(nullable = false)
-    private String management;
-    
-    private String unity;
-    
-	@Column(nullable = false)
-    private String code;
-    
-	@Column(nullable = false)
-    private String descProject;
-        
-	@Column(nullable = false)
-    private String descTask;
-    
-	@Column(nullable = false)
-    private String location;
-    
-	@Column(nullable = false)
-    private int floor;
-    
-	@Column(nullable = false)
-    private String place;
-    
-    private String typeAccess;
-    
-    private String platEquip;
-    
-    private String contact;
-    
-    private String mobile;
-    
-    private String reasonDotation;
 
-    private String guards;
-    
-    @OneToMany(targetEntity = LanguagesRequest.class, cascade = CascadeType.ALL)
-    private List<LanguagesRequest> languages;
-    
-    @OneToMany(targetEntity = Cv.class, cascade = CascadeType.ALL)
-    private List<Cv> cvs;
-    
-    @OneToMany(targetEntity = ReqFunctional.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "req_functional", referencedColumnName = "id")
-    private List<ReqFunctional> reqFunctional;
-//    
-//    @OneToMany(targetEntity = ReqTechnical.class, cascade = CascadeType.ALL)
-//    private List<ReqTechnical> reqTech;
-      
+	@Column(nullable = false)
+	private String petitioner;
+
+	@Column(nullable = false)
+	private String reason;
+
+	private String substitution;
+
+	private String suggestedService;
+
+	private String sugSerJust;
+
+	private String observations;
+
+	@Column(nullable = false)
+	private String categoryFunc;
+
+	private int limitRate;
+
+	@Column(nullable = false)
+	private String nResources;
+
+	@Column(nullable = false)
+	private String profile;
+
+	@Column(nullable = false)
+	private String technology;
+
+	@Column(nullable = false)
+	private Date startDate;
+
+	private Date endDate;
+
+	@Column(nullable = false)
+	private String area;
+
+	@Column(nullable = false)
+	private String department;
+
+	@Column(nullable = false)
+	private String management;
+
+	private String unity;
+
+	@Column(nullable = false)
+	private String code;
+
+	@Column(nullable = false)
+	private String descProject;
+
+	@Column(nullable = false)
+	private String descTask;
+
+	@Column(nullable = false)
+	private String location;
+
+	@Column(nullable = false)
+	private int floor;
+
+	@Column(nullable = false)
+	private String place;
+
+	private String typeAccess;
+
+	private String platEquip;
+
+	private String contact;
+
+	private String mobile;
+
+	private String reasonDotation;
+
+	private String guards;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "request_provider", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "provider_id", referencedColumnName = "id"))
+	private List<Provider> provider;
+	
+	@OneToMany(targetEntity = ReqFunctional.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "req_funct", referencedColumnName = "id")
+	private List<ReqFunctional> reqFuncts;
+	
+	@OneToMany(targetEntity = LanguagesRequest.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "req_lang", referencedColumnName = "id")
+	private List<LanguagesRequest> languages;
+
+	@OneToMany(targetEntity = ReqTechnical.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "req_tech", referencedColumnName = "id")
+	private List<ReqTechnical> reqTechs;
+
+	@OneToMany(targetEntity = Cv.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "req_cv", referencedColumnName = "id")
+	private List<Cv> cvs;
+
 	public Integer getId() {
 		return id;
 	}
@@ -146,8 +155,6 @@ public class Request {
 	public void setSuggestedService(String suggestedService) {
 		this.suggestedService = suggestedService;
 	}
-
-
 
 	public String getSugSerJust() {
 		return sugSerJust;
@@ -269,7 +276,6 @@ public class Request {
 		this.descProject = descProject;
 	}
 
-
 	public String getDescTask() {
 		return descTask;
 	}
@@ -342,7 +348,6 @@ public class Request {
 		this.reasonDotation = reasonDotation;
 	}
 
-
 	public String getGuards() {
 		return guards;
 	}
@@ -350,4 +355,47 @@ public class Request {
 	public void setGuards(String guards) {
 		this.guards = guards;
 	}
+
+	public List<Provider> getProvider() {
+		return provider;
+	}
+
+	public void setProvider(List<Provider> provider) {
+		this.provider = provider;
+	}
+
+	public List<ReqFunctional> getReqFuncts() {
+		return reqFuncts;
+	}
+
+	public void setReqFuncts(List<ReqFunctional> reqFuncts) {
+		this.reqFuncts = reqFuncts;
+	}
+
+	public List<LanguagesRequest> getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(List<LanguagesRequest> languages) {
+		this.languages = languages;
+	}
+
+	public List<ReqTechnical> getReqTechs() {
+		return reqTechs;
+	}
+
+	public void setReqTechs(List<ReqTechnical> reqTechs) {
+		this.reqTechs = reqTechs;
+	}
+
+	public List<Cv> getCvs() {
+		return cvs;
+	}
+
+	public void setCvs(List<Cv> cvs) {
+		this.cvs = cvs;
+	}
+
+	
+		
 }
