@@ -23,6 +23,8 @@ public class Request {
 
 	@Column(nullable = false)
 	private String petitioner;
+	
+	private String title;
 
 	@Column(nullable = false)
 	private String reason;
@@ -30,8 +32,6 @@ public class Request {
 	private String substitution;
 
 	private String suggestedService;
-
-	private String sugSerJust;
 
 	private String observations;
 
@@ -66,12 +66,6 @@ public class Request {
 	private String unity;
 
 	@Column(nullable = false)
-	private String code;
-
-	@Column(nullable = false)
-	private String descProject;
-
-	@Column(nullable = false)
 	private String descTask;
 
 	@Column(nullable = false)
@@ -93,12 +87,6 @@ public class Request {
 
 	private String reasonDotation;
 
-	private String guards;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "request_provider", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), 
-    inverseJoinColumns = @JoinColumn(name = "provider_id", referencedColumnName = "id"))
-	private List<Provider> provider;
 	
 	@OneToMany(targetEntity = ReqFunctional.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "req_funct", referencedColumnName = "id")
@@ -132,6 +120,14 @@ public class Request {
 		this.petitioner = petitioner;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public String getReason() {
 		return reason;
 	}
@@ -154,14 +150,6 @@ public class Request {
 
 	public void setSuggestedService(String suggestedService) {
 		this.suggestedService = suggestedService;
-	}
-
-	public String getSugSerJust() {
-		return sugSerJust;
-	}
-
-	public void setSugSerJust(String sugSerJust) {
-		this.sugSerJust = sugSerJust;
 	}
 
 	public String getObservations() {
@@ -260,22 +248,6 @@ public class Request {
 		this.unity = unity;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getDescProject() {
-		return descProject;
-	}
-
-	public void setDescProject(String descProject) {
-		this.descProject = descProject;
-	}
-
 	public String getDescTask() {
 		return descTask;
 	}
@@ -346,22 +318,6 @@ public class Request {
 
 	public void setReasonDotation(String reasonDotation) {
 		this.reasonDotation = reasonDotation;
-	}
-
-	public String getGuards() {
-		return guards;
-	}
-
-	public void setGuards(String guards) {
-		this.guards = guards;
-	}
-
-	public List<Provider> getProvider() {
-		return provider;
-	}
-
-	public void setProvider(List<Provider> provider) {
-		this.provider = provider;
 	}
 
 	public List<ReqFunctional> getReqFuncts() {
