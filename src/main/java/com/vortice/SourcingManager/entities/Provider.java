@@ -25,8 +25,8 @@ public class Provider {
 		return id;
 	}
 
-	public void setId(Integer id_prov) {
-		this.id = id_prov;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getProviderName() {
@@ -44,7 +44,6 @@ public class Provider {
 	public void setRequests(List<Request> requests) {
 		this.requests = requests;
 	}
-	
 
 	
 }

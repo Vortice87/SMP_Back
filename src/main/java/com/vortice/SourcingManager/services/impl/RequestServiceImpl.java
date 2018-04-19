@@ -42,10 +42,10 @@ public class RequestServiceImpl implements RequestService{
 		
 		
 		for (Provider provider : providersAux) {
-			if(provider.getRequests() != null) {
-				provider.getRequests().add(request);
-			}else {
+			if(provider.getRequests() == null) {
 				provider.setRequests(requestAux);
+			}else {
+				provider.getRequests().add(request);
 			}
 		}		
 		request.setProvider(providersAux);
