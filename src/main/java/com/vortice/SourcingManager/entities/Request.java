@@ -12,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity(name = "REQUEST")
 public class Request {
@@ -21,8 +23,10 @@ public class Request {
 	@GeneratedValue
 	private Integer id;
 
-	@Column(nullable = false)
-	private String petitioner;
+
+	@ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+	@JoinColumn(name ="petitioner", referencedColumnName= "id")
+	private User petitioner;
 	
 	private String title;
 
@@ -34,9 +38,6 @@ public class Request {
 	private String suggestedService;
 
 	private String observations;
-
-	@Column(nullable = false)
-	private String categoryFunc;
 
 	private int limitRate;
 
@@ -83,14 +84,6 @@ public class Request {
 
 	private String contact;
 
-	private String mobile;
-
-	private String reasonDotation;
-
-	
-	@OneToMany(targetEntity = ReqFunctional.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "req_funct", referencedColumnName = "id")
-	private List<ReqFunctional> reqFuncts;
 	
 	@OneToMany(targetEntity = LanguagesRequest.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "req_lang", referencedColumnName = "id")
@@ -112,11 +105,11 @@ public class Request {
 		this.id = id;
 	}
 
-	public String getPetitioner() {
+	public User getPetitioner() {
 		return petitioner;
 	}
 
-	public void setPetitioner(String petitioner) {
+	public void setPetitioner(User petitioner) {
 		this.petitioner = petitioner;
 	}
 
@@ -158,14 +151,6 @@ public class Request {
 
 	public void setObservations(String observations) {
 		this.observations = observations;
-	}
-
-	public String getCategoryFunc() {
-		return categoryFunc;
-	}
-
-	public void setCategoryFunc(String categoryFunc) {
-		this.categoryFunc = categoryFunc;
 	}
 
 	public int getLimitRate() {
@@ -304,30 +289,6 @@ public class Request {
 		this.contact = contact;
 	}
 
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public String getReasonDotation() {
-		return reasonDotation;
-	}
-
-	public void setReasonDotation(String reasonDotation) {
-		this.reasonDotation = reasonDotation;
-	}
-
-	public List<ReqFunctional> getReqFuncts() {
-		return reqFuncts;
-	}
-
-	public void setReqFuncts(List<ReqFunctional> reqFuncts) {
-		this.reqFuncts = reqFuncts;
-	}
-
 	public List<LanguagesRequest> getLanguages() {
 		return languages;
 	}
@@ -352,6 +313,6 @@ public class Request {
 		this.cvs = cvs;
 	}
 
-	
+		
 		
 }
