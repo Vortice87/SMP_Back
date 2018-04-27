@@ -1,19 +1,11 @@
-package com.vortice.SourcingManager.entities;
+package com.vortice.SourcingManager.services.dto;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@Entity(name="REQTECHNICAL")
-public class ReqTechnical {
-
+@JsonInclude(Include.NON_NULL)
+public class ReqTechnicalDTO {
 	
-	@Id
-	@GeneratedValue
 	private Integer techId;
 	
 	private String techscope;
@@ -23,10 +15,8 @@ public class ReqTechnical {
 	private String exp;
 	
 	private String reqdes;
-	
-	@ManyToOne(targetEntity = Request.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "techReq", referencedColumnName = "id")
-	private Request request;
+
+	private Integer requestId;
 
 	public Integer getTechId() {
 		return techId;
@@ -68,14 +58,13 @@ public class ReqTechnical {
 		this.reqdes = reqdes;
 	}
 
-	public Request getRequest() {
-		return request;
+	public Integer getRequestId() {
+		return requestId;
 	}
 
-	public void setRequest(Request request) {
-		this.request = request;
+	public void setRequestId(Integer requestId) {
+		this.requestId = requestId;
 	}
+	
 
-	
-	
 }

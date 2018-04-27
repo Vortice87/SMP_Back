@@ -1,36 +1,20 @@
-package com.vortice.SourcingManager.entities;
+package com.vortice.SourcingManager.services.dto;
 
 import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@Entity(name = "REQUEST")
-public class Request {
-
-	@Id
-	@GeneratedValue
+@JsonInclude(Include.NON_NULL)
+public class RequestDTO {
+	
 	private Integer id;
 
-
-	@ManyToOne(targetEntity = UserAccount.class, cascade = CascadeType.ALL)
-	@JoinColumn(name ="petitioner", referencedColumnName= "id")
-	private UserAccount petitioner;
+	private Integer petitionerId;
 	
 	private String title;
 
-	@Column(nullable = false)
 	private String reason;
 
 	private String substitution;
@@ -41,41 +25,30 @@ public class Request {
 
 	private int limitRate;
 
-	@Column(nullable = false)
 	private String nResources;
 
-	@Column(nullable = false)
 	private String profile;
 
-	@Column(nullable = false)
 	private String technology;
 
-	@Column(nullable = false)
 	private Date startDate;
 
 	private Date endDate;
 
-	@Column(nullable = false)
 	private String area;
 
-	@Column(nullable = false)
 	private String department;
 
-	@Column(nullable = false)
 	private String management;
 
 	private String unity;
 
-	@Column(nullable = false)
 	private String descTask;
 
-	@Column(nullable = false)
 	private String location;
 
-	@Column(nullable = false)
 	private int floor;
 
-	@Column(nullable = false)
 	private String place;
 
 	private String typeAccess;
@@ -84,18 +57,11 @@ public class Request {
 
 	private String contact;
 
-	
-	@OneToMany(targetEntity = LanguagesRequest.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "langReq", referencedColumnName = "id")
-	private List<LanguagesRequest> languages;
+	private List<LanguagesRequestDTO> languages;
 
-	@OneToMany(targetEntity = ReqTechnical.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "techReq", referencedColumnName = "id")
-	private List<ReqTechnical> reqTechs;
+	private List<ReqTechnicalDTO> reqTechs;
 
-	@OneToMany(targetEntity = Cv.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "cvReq", referencedColumnName = "id")
-	private List<Cv> cvs;
+	private List<CvDTO> cvs;
 
 	public Integer getId() {
 		return id;
@@ -105,12 +71,12 @@ public class Request {
 		this.id = id;
 	}
 
-	public UserAccount getPetitioner() {
-		return petitioner;
+	public Integer getPetitionerId() {
+		return petitionerId;
 	}
 
-	public void setPetitioner(UserAccount petitioner) {
-		this.petitioner = petitioner;
+	public void setPetitionerId(Integer petitionerId) {
+		this.petitionerId = petitionerId;
 	}
 
 	public String getTitle() {
@@ -289,30 +255,29 @@ public class Request {
 		this.contact = contact;
 	}
 
-	public List<LanguagesRequest> getLanguages() {
+	public List<LanguagesRequestDTO> getLanguages() {
 		return languages;
 	}
 
-	public void setLanguages(List<LanguagesRequest> languages) {
+	public void setLanguages(List<LanguagesRequestDTO> languages) {
 		this.languages = languages;
 	}
 
-	public List<ReqTechnical> getReqTechs() {
+	public List<ReqTechnicalDTO> getReqTechs() {
 		return reqTechs;
 	}
 
-	public void setReqTechs(List<ReqTechnical> reqTechs) {
+	public void setReqTechs(List<ReqTechnicalDTO> reqTechs) {
 		this.reqTechs = reqTechs;
 	}
 
-	public List<Cv> getCvs() {
+	public List<CvDTO> getCvs() {
 		return cvs;
 	}
 
-	public void setCvs(List<Cv> cvs) {
+	public void setCvs(List<CvDTO> cvs) {
 		this.cvs = cvs;
 	}
+	
 
-		
-		
 }

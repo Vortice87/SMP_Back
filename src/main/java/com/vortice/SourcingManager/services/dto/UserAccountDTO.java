@@ -1,39 +1,27 @@
-package com.vortice.SourcingManager.entities;
+package com.vortice.SourcingManager.services.dto;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@Entity(name = "USER")
-public class User {
+@JsonInclude(Include.NON_NULL)
+public class UserAccountDTO {
 	
-	@Id
-	@Column(name = "id")
-	@GeneratedValue
+	
 	private Integer id;
 	
 	private String name;
 	
 	private String lastName;
 	
-	@Column(name = "username", unique = true, nullable = false )
 	private String username;
 	
-	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@Column(name = "profile", nullable = false)
 	private String profile;
 	
-	@OneToMany(targetEntity = Request.class, cascade = CascadeType.ALL)
-	@JoinColumn(name ="petitioner", referencedColumnName= "id")
-	private List<Request> requests;
+	private List<RequestDTO> requests;
 
 	public Integer getId() {
 		return id;
@@ -83,7 +71,13 @@ public class User {
 		this.profile = profile;
 	}
 
+	public List<RequestDTO> getRequests() {
+		return requests;
+	}
 
-
+	public void setRequests(List<RequestDTO> requests) {
+		this.requests = requests;
+	}
 	
+
 }

@@ -13,22 +13,22 @@ public class Cv {
 	
 	@Id
 	@GeneratedValue
-    private Integer id_cv;
+    private Integer cvId;
 	
     private String dni;
 	
     private String name;
 	
 	@ManyToOne(targetEntity = Request.class, cascade = CascadeType.ALL)
-	@JoinColumn(name ="req_cv", referencedColumnName = "id")
+	@JoinColumn(name ="cvReq", referencedColumnName = "id")
 	private Request request;
 
-	public Integer getId_cv() {
-		return id_cv;
+	public Integer getCvId() {
+		return cvId;
 	}
 
-	public void setId_cv(Integer id_cv) {
-		this.id_cv = id_cv;
+	public void setCvId(Integer cvId) {
+		this.cvId = cvId;
 	}
 
 	public String getDni() {
@@ -47,13 +47,14 @@ public class Cv {
 		this.name = name;
 	}
 
-////	public Request getRequest() {
-////		return request;
-////	}
-////
-////	public void setRequest(Request request) {
-////		this.request = request;
-////	}
-//	
+	public Request getRequest() {
+		return request;
+	}
+
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+
+	
 
 }

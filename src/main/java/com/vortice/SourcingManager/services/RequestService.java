@@ -1,11 +1,11 @@
 package com.vortice.SourcingManager.services;
 
-import com.vortice.SourcingManager.entities.Request;
+import com.vortice.SourcingManager.services.dto.RequestDTO;
 
 public interface RequestService {
 	
-	public Request getRequestById(Integer id);
+	public RequestDTO getRequestById(Integer id);
 	
-	public boolean createRequest(Request request);
+	public boolean createRequest(RequestDTO request);
 
 }

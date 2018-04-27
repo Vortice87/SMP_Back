@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.vortice.SourcingManager.entities.User;
-import com.vortice.SourcingManager.services.impl.UserServiceImpl;
+import com.vortice.SourcingManager.entities.UserAccount;
+import com.vortice.SourcingManager.services.dto.UserAccountDTO;
+import com.vortice.SourcingManager.services.impl.UserAccountServiceImpl;
+import com.vortice.SourcingManager.services.mappers.UserAccountMapper;
 
 @Controller
 @RequestMapping("/users")
@@ -21,21 +23,22 @@ import com.vortice.SourcingManager.services.impl.UserServiceImpl;
 public class UserController {
 	
 	@Autowired
-	private UserServiceImpl userService;
+	private UserAccountServiceImpl userService;
 	
 	@PostMapping("/authentication")
 	@ResponseBody
-	public User loginAuth(@RequestBody User user) {
+	public UserAccountDTO loginAuth(@RequestBody UserAccountDTO user) {
 		
-		User userAuth = userService.loginAuth(user.getUsername(), user.getPassword());
+		UserAccountDTO userAuthdto= userService.loginAuth(user.getUsername(), user.getPassword());
 
-		return userAuth;
+		 
+		return userAuthdto;
 
 	}
 	
 	@PostMapping("/create")
 	@ResponseBody
-	public boolean createUser(@RequestBody User user) {
+	public boolean createUser(@RequestBody UserAccountDTO user) {
 		
 		boolean success = userService.createUser(user);
 		return success;
@@ -65,7 +68,7 @@ public class UserController {
 	
 	@PostMapping("/update")
 	@ResponseBody
-	public boolean modifyUser(@RequestBody User user) {
+	public boolean modifyUser(@RequestBody UserAccountDTO user) {
 		
 		boolean success = userService.updateUser(user);
 		return success;
@@ -74,9 +77,9 @@ public class UserController {
 	
 	@GetMapping("/all")
 	@ResponseBody
-	public List<User> getAllUsers(){
+	public List<UserAccountDTO> getAllUsers(){
 		
-		List<User> userList = userService.getAllUsers();
+		List<UserAccountDTO> userList = userService.getAllUsers();
 		
 		return userList;
 		

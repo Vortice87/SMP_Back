@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vortice.SourcingManager.entities.Request;
+import com.vortice.SourcingManager.entities.UserAccount;
+import com.vortice.SourcingManager.services.dto.RequestDTO;
+import com.vortice.SourcingManager.services.dto.UserAccountDTO;
 import com.vortice.SourcingManager.services.impl.RequestServiceImpl;
+import com.vortice.SourcingManager.services.impl.UserAccountServiceImpl;
 
 @Controller
 @RequestMapping("/requests")
@@ -19,11 +23,20 @@ public class RequestController {
 	@Autowired
 	private RequestServiceImpl requestService;
 	
+	@Autowired
+	private UserAccountServiceImpl userAccountService;
+	
 	@PostMapping("/create")
 	@ResponseBody
-	public boolean createRequest(@RequestBody Request request) {
+	public boolean createRequest(@RequestBody RequestDTO requestdto) {
 		
-		boolean success = this.requestService.createRequest(request);
+//		UserAccount user = this.userAccountService.findById(request.getPetitioner().getId());
+		
+		UserAccountDTO userDTO = this.userAccountService.findById(requestdto.getPetitionerId());
+
+		
+		requestdto.setPetitioner(userDTO);
+		boolean success = this.requestService.createRequest(requestdto);
 		return success;
 		
 	}

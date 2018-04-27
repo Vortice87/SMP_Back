@@ -1,7 +1,6 @@
 package com.vortice.SourcingManager.entities;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,7 +12,7 @@ public class LanguagesRequest {
 
 	@Id
 	@GeneratedValue
-	private Integer id_lang;
+	private Integer langId;
 	
 	private String language;
 	
@@ -22,15 +21,15 @@ public class LanguagesRequest {
     private String reqdes;
 
 	@ManyToOne(targetEntity = Request.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "req_lang", referencedColumnName = "id")
+	@JoinColumn(name = "langReq", referencedColumnName = "id")
 	private Request request;
 
-	public Integer getId_lang() {
-		return id_lang;
+	public Integer getLangId() {
+		return langId;
 	}
 
-	public void setId_lang(Integer id_lang) {
-		this.id_lang = id_lang;
+	public void setLangId(Integer langId) {
+		this.langId = langId;
 	}
 
 	public String getLanguage() {
@@ -65,6 +64,5 @@ public class LanguagesRequest {
 		this.request = request;
 	}
 
-	
 
 }
