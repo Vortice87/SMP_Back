@@ -31,7 +31,6 @@ public class UserController {
 		
 		UserAccountDTO userAuthdto= userService.loginAuth(user.getUsername(), user.getPassword());
 
-		 
 		return userAuthdto;
 
 	}

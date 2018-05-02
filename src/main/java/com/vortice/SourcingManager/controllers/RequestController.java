@@ -28,15 +28,9 @@ public class RequestController {
 	
 	@PostMapping("/create")
 	@ResponseBody
-	public boolean createRequest(@RequestBody RequestDTO requestdto) {
+	public boolean createRequest(@RequestBody RequestDTO dto) {
 		
-//		UserAccount user = this.userAccountService.findById(request.getPetitioner().getId());
-		
-		UserAccountDTO userDTO = this.userAccountService.findById(requestdto.getPetitionerId());
-
-		
-		//requestdto.setPetitioner(userDTO);
-		boolean success = this.requestService.createRequest(requestdto);
+		boolean success = this.requestService.createRequest(dto);
 		return success;
 		
 	}
