@@ -1,4 +1,4 @@
-package com.vortice.SourcingManager.services.dto;
+package com.vortice.SourcingManager.dto;
 
 import java.sql.Date;
 import java.util.List;

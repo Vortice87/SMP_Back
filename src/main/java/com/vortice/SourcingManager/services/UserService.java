@@ -3,7 +3,7 @@ package com.vortice.SourcingManager.services;
 
 import java.util.List;
 
-import com.vortice.SourcingManager.services.dto.UserAccountDTO;
+import com.vortice.SourcingManager.dto.UserAccountDTO;
 
 public interface UserService {
 	

@@ -1,4 +1,4 @@
-package com.vortice.SourcingManager.services.dto;
+package com.vortice.SourcingManager.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

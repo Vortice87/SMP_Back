@@ -1,6 +1,6 @@
 package com.vortice.SourcingManager.services;
 
-import com.vortice.SourcingManager.services.dto.RequestDTO;
+import com.vortice.SourcingManager.dto.RequestDTO;
 
 public interface RequestService {
 	

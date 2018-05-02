@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.vortice.SourcingManager.dto.UserAccountDTO;
 import com.vortice.SourcingManager.entities.UserAccount;
-import com.vortice.SourcingManager.services.dto.UserAccountDTO;
+import com.vortice.SourcingManager.mappers.UserAccountMapper;
 import com.vortice.SourcingManager.services.impl.UserAccountServiceImpl;
-import com.vortice.SourcingManager.services.mappers.UserAccountMapper;
 
 @Controller
 @RequestMapping("/users")

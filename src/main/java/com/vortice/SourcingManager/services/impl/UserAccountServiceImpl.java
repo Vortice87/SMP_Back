@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 import com.vortice.SourcingManager.dao.UserDao;
+import com.vortice.SourcingManager.dto.RequestDTO;
+import com.vortice.SourcingManager.dto.UserAccountDTO;
 import com.vortice.SourcingManager.entities.Request;
 import com.vortice.SourcingManager.entities.UserAccount;
+import com.vortice.SourcingManager.mappers.UserAccountMapper;
 import com.vortice.SourcingManager.services.UserService;
-import com.vortice.SourcingManager.services.dto.RequestDTO;
-import com.vortice.SourcingManager.services.dto.UserAccountDTO;
-import com.vortice.SourcingManager.services.mappers.UserAccountMapper;
 
 @Service
 public class UserAccountServiceImpl implements UserService {
@@ -26,7 +26,7 @@ public class UserAccountServiceImpl implements UserService {
 
 		UserAccount user = dao.findByUsernameAndPassword(username, password);
 
-		UserAccountDTO userDTO = UserAccountMapper.userAccountToDTO(user);
+		UserAccountDTO userDTO = UserAccountMapper.ToDTO(user);
 		if (userDTO != null) {
 			return userDTO;
 		}
@@ -42,7 +42,7 @@ public class UserAccountServiceImpl implements UserService {
 		
 		if(userList != null && userList.size() > 0) {
 			for(UserAccount userAccount: userList) {
-				listDTO.add(UserAccountMapper.userAccountToDTO(userAccount));
+				listDTO.add(UserAccountMapper.ToDTO(userAccount));
 			}
 			return listDTO;
 		}
@@ -52,14 +52,7 @@ public class UserAccountServiceImpl implements UserService {
 	@Override
 	public boolean createUser(UserAccountDTO userDTO) {
 		
-		UserAccount user = new UserAccount();
-		user.setId(userDTO.getId());
-		user.setName(userDTO.getName());
-		user.setLastName(user.getLastName());
-		user.setUsername(userDTO.getUsername());
-		user.setPassword(userDTO.getPassword());
-		user.setProfile(userDTO.getProfile());
-		user.setRequests(new ArrayList<Request>());
+		UserAccount user = UserAccountMapper.DTOto(userDTO);
 		this.dao.save(user);
 		boolean success = this.dao.exists(user.getId());
 
@@ -86,23 +79,16 @@ public class UserAccountServiceImpl implements UserService {
 	@Override
 	public boolean updateUser(UserAccountDTO userDTO) {
 		
-		UserAccount user = new UserAccount();
-		user.setId(userDTO.getId());
-		user.setName(userDTO.getName());
-		user.setLastName(user.getLastName());
-		user.setUsername(userDTO.getUsername());
-		user.setPassword(userDTO.getPassword());
-		user.setProfile(userDTO.getProfile());
+		UserAccount user = UserAccountMapper.DTOto(userDTO);
 		
-		List<Request> list = new ArrayList<Request>();
-		if(userDTO.getRequests() != null && userDTO.getRequests().size() > 0) {
-			for(RequestDTO dto: userDTO.getRequests()) {
-				Request r = new Request();
-				r.setId(dto.getId());
-				user.getRequests().add(r);
-			}
-		}
-		
+//		List<Request> list = new ArrayList<Request>();
+//		if(userDTO.getRequests() != null && userDTO.getRequests().size() > 0) {
+//			for(RequestDTO dto: userDTO.getRequests()) {
+//				Request r = new Request();
+//				r.setId(dto.getId());
+//				user.getRequests().add(r);
+//			}
+//		}
 		
 		this.dao.save(user);
 		boolean success = this.dao.exists(user.getId());
@@ -113,7 +99,7 @@ public class UserAccountServiceImpl implements UserService {
 	public UserAccountDTO findById(Integer id) {
 		
 		UserAccount user = this.dao.findById(id);
-		UserAccountDTO userDTO = UserAccountMapper.userAccountToDTO(user);
+		UserAccountDTO userDTO = UserAccountMapper.ToDTO(user);
 		return userDTO;
 	}
 
