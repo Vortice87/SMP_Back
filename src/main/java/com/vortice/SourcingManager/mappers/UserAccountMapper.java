@@ -37,7 +37,7 @@ public class UserAccountMapper {
 		user.setPassword(dto.getPassword());
 		user.setProfile(dto.getProfile());
 
-		return null;
+		return user;
 	}
 
 }
