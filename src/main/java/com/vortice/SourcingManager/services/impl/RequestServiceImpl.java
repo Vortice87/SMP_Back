@@ -1,5 +1,9 @@
 package com.vortice.SourcingManager.services.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.vortice.SourcingManager.dao.RequestDao;
@@ -24,6 +28,7 @@ public class RequestServiceImpl implements RequestService{
 		
 		Request request = this.requestDao.findById(id);
 		RequestDTO dto = RequestMapper.ToDTO(request);
+		
 		return dto;
 	}
 
@@ -36,6 +41,20 @@ public class RequestServiceImpl implements RequestService{
 		this.requestDao.save(request);
 		boolean success = this.requestDao.exists(request.getId());
 		return success;
+	}
+
+	@Override
+	public List<RequestDTO> getAll() {
+		
+		Iterator<Request> iterator = requestDao.findAll().iterator();
+		List<RequestDTO> dtoList = new ArrayList<RequestDTO>();
+		
+		while(iterator.hasNext()) {
+			
+			dtoList.add(RequestMapper.ToDTO(iterator.next()));
+		}
+		
+		return dtoList;
 	}
 	
 
