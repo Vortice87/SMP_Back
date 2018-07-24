@@ -26,8 +26,9 @@ public class UserAccountServiceImpl implements UserService {
 
 		UserAccount user = dao.findByUsernameAndPassword(username, password);
 
-		UserAccountDTO userDTO = UserAccountMapper.ToDTO(user);
-		if (userDTO != null) {
+		if (user != null) {
+			UserAccountDTO userDTO = UserAccountMapper.ToDTO(user);
+
 			return userDTO;
 		}
 
@@ -38,7 +39,7 @@ public class UserAccountServiceImpl implements UserService {
 	public List<UserAccountDTO> getAllUsers() {
 
 		List<UserAccount> userList = Lists.newArrayList(this.dao.findAll());
-		List<UserAccountDTO> listDTO = new ArrayList<UserAccountDTO>();
+		List<UserAccountDTO> listDTO = new ArrayList<>();
 		
 		if(userList != null && userList.size() > 0) {
 			for(UserAccount userAccount: userList) {
@@ -46,7 +47,7 @@ public class UserAccountServiceImpl implements UserService {
 			}
 			return listDTO;
 		}
-		return null;
+		return listDTO;
 	}
 
 	@Override
