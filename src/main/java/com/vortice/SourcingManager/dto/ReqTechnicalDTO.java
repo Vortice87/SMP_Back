@@ -9,9 +9,7 @@ public class ReqTechnicalDTO {
 	private Integer techId;
 	
 	private String techscope;
-	
-	private String others;
-	
+		
 	private String exp;
 	
 	private String reqdes;
@@ -32,14 +30,6 @@ public class ReqTechnicalDTO {
 
 	public void setTechscope(String techscope) {
 		this.techscope = techscope;
-	}
-
-	public String getOthers() {
-		return others;
-	}
-
-	public void setOthers(String others) {
-		this.others = others;
 	}
 
 	public String getExp() {

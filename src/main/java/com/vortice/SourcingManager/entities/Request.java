@@ -6,15 +6,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity(name = "REQUEST")
 public class Request {
@@ -28,66 +24,17 @@ public class Request {
 	@JoinColumn(name ="petitioner", referencedColumnName= "id")
 	private UserAccount petitioner;
 	
-	private String title;
-
 	@Column(nullable = false)
-	private String reason;
-
-	private String substitution;
-
-	private String suggestedService;
-
-	private String observations;
-
-	private int limitRate;
+	private String profile;
 
 	@Column(nullable = false)
 	private String nResources;
 
 	@Column(nullable = false)
-	private String profile;
-
-	@Column(nullable = false)
-	private String technology;
-
-	@Column(nullable = false)
 	private Date startDate;
-
-	private Date endDate;
-
-	@Column(nullable = false)
-	private String area;
-
-	@Column(nullable = false)
-	private String department;
-
-	@Column(nullable = false)
-	private String management;
-
-	private String unity;
 
 	@Column(nullable = false)
 	private String descTask;
-
-	@Column(nullable = false)
-	private String location;
-
-	@Column(nullable = false)
-	private int floor;
-
-	@Column(nullable = false)
-	private String place;
-
-	private String typeAccess;
-
-	private String platEquip;
-
-	private String contact;
-
-	
-	@OneToMany(targetEntity = LanguagesRequest.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "langReq", referencedColumnName = "id")
-	private List<LanguagesRequest> languages;
 
 	@OneToMany(targetEntity = ReqTechnical.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "techReq", referencedColumnName = "id")
@@ -113,52 +60,12 @@ public class Request {
 		this.petitioner = petitioner;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getProfile() {
+		return profile;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getReason() {
-		return reason;
-	}
-
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
-
-	public String getSubstitution() {
-		return substitution;
-	}
-
-	public void setSubstitution(String substitution) {
-		this.substitution = substitution;
-	}
-
-	public String getSuggestedService() {
-		return suggestedService;
-	}
-
-	public void setSuggestedService(String suggestedService) {
-		this.suggestedService = suggestedService;
-	}
-
-	public String getObservations() {
-		return observations;
-	}
-
-	public void setObservations(String observations) {
-		this.observations = observations;
-	}
-
-	public int getLimitRate() {
-		return limitRate;
-	}
-
-	public void setLimitRate(int limitRate) {
-		this.limitRate = limitRate;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 
 	public String getnResources() {
@@ -169,22 +76,6 @@ public class Request {
 		this.nResources = nResources;
 	}
 
-	public String getProfile() {
-		return profile;
-	}
-
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-
-	public String getTechnology() {
-		return technology;
-	}
-
-	public void setTechnology(String technology) {
-		this.technology = technology;
-	}
-
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -193,108 +84,12 @@ public class Request {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-	public String getManagement() {
-		return management;
-	}
-
-	public void setManagement(String management) {
-		this.management = management;
-	}
-
-	public String getUnity() {
-		return unity;
-	}
-
-	public void setUnity(String unity) {
-		this.unity = unity;
-	}
-
 	public String getDescTask() {
 		return descTask;
 	}
 
 	public void setDescTask(String descTask) {
 		this.descTask = descTask;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public int getFloor() {
-		return floor;
-	}
-
-	public void setFloor(int floor) {
-		this.floor = floor;
-	}
-
-	public String getPlace() {
-		return place;
-	}
-
-	public void setPlace(String place) {
-		this.place = place;
-	}
-
-	public String getTypeAccess() {
-		return typeAccess;
-	}
-
-	public void setTypeAccess(String typeAccess) {
-		this.typeAccess = typeAccess;
-	}
-
-	public String getPlatEquip() {
-		return platEquip;
-	}
-
-	public void setPlatEquip(String platEquip) {
-		this.platEquip = platEquip;
-	}
-
-	public String getContact() {
-		return contact;
-	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
-
-	public List<LanguagesRequest> getLanguages() {
-		return languages;
-	}
-
-	public void setLanguages(List<LanguagesRequest> languages) {
-		this.languages = languages;
 	}
 
 	public List<ReqTechnical> getReqTechs() {
@@ -312,7 +107,6 @@ public class Request {
 	public void setCvs(List<Cv> cvs) {
 		this.cvs = cvs;
 	}
-
 		
 		
 }

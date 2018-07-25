@@ -17,9 +17,7 @@ public class ReqTechnical {
 	private Integer techId;
 	
 	private String techscope;
-	
-	private String others;
-	
+		
 	private String exp;
 	
 	private String reqdes;
@@ -42,14 +40,6 @@ public class ReqTechnical {
 
 	public void setTechscope(String techscope) {
 		this.techscope = techscope;
-	}
-
-	public String getOthers() {
-		return others;
-	}
-
-	public void setOthers(String others) {
-		this.others = others;
 	}
 
 	public String getExp() {
