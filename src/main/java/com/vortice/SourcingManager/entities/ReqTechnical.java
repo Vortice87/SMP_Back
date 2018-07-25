@@ -23,7 +23,7 @@ public class ReqTechnical {
 	private String reqdes;
 	
 	@ManyToOne(targetEntity = Request.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "techReq", referencedColumnName = "id")
+	@JoinColumn(name = "requestId", referencedColumnName = "id")
 	private Request request;
 
 	public Integer getTechId() {

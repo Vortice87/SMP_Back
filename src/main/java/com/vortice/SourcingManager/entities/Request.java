@@ -37,7 +37,7 @@ public class Request {
 	private String descTask;
 
 	@OneToMany(targetEntity = ReqTechnical.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "techReq", referencedColumnName = "id")
+	@JoinColumn(name = "requestId", referencedColumnName = "id")
 	private List<ReqTechnical> reqTechs;
 
 	@OneToMany(targetEntity = Cv.class, cascade = CascadeType.ALL)

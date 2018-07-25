@@ -36,6 +36,12 @@ public class UserAccountMapper {
 		user.setUsername(dto.getUsername());
 		user.setPassword(dto.getPassword());
 		user.setProfile(dto.getProfile());
+		if(dto.getRequests() != null && dto.getRequests().size() >0) {
+			user.setRequests(new ArrayList<Request>());
+			for(RequestDTO r: dto.getRequests()) {
+				user.getRequests().add(RequestMapper.DTOto(r));
+			}
+		}
 
 		return user;
 	}
