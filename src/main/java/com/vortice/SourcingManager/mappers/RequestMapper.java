@@ -15,6 +15,7 @@ public class RequestMapper {
 		RequestDTO newDTO = new RequestDTO();
 		newDTO.setId(request.getId());
 		newDTO.setPetitionerId(request.getPetitioner().getId());
+		newDTO.setCreationDate(request.getCreationDate());
 		newDTO.setProfile(request.getProfile());
 		newDTO.setnResources(request.getnResources());
 		newDTO.setStartDate(request.getStartDate());
@@ -42,6 +43,7 @@ public class RequestMapper {
 		Request request = new Request();
 		request.setId(dto.getId());
 		request.setPetitioner(null);
+		request.setCreationDate(dto.getCreationDate());
 		request.setProfile(dto.getProfile());
 		request.setnResources(dto.getnResources());
 		request.setStartDate(dto.getStartDate());

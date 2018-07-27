@@ -13,6 +13,8 @@ public class RequestDTO {
 
 	private Integer petitionerId;
 	
+	private Date creationDate;
+	
 	private String profile;
 
 	private String nResources;
@@ -88,8 +90,13 @@ public class RequestDTO {
 	public void setCvs(List<CvDTO> cvs) {
 		this.cvs = cvs;
 	}
-	
-	
 
+	public Date getCreationDate() {
+		return creationDate;
+	}
 
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+	
 }

@@ -9,6 +9,7 @@ public class ReqTechnicalMapper {
 		
 		ReqTechnicalDTO newDTO = new ReqTechnicalDTO();
 		newDTO.setTechId(rt.getTechId());
+		newDTO.setArea(rt.getArea());
 		newDTO.setTechscope(rt.getTechscope());
 		newDTO.setExp(rt.getExp());
 		newDTO.setReqdes(rt.getReqdes());
@@ -21,6 +22,7 @@ public class ReqTechnicalMapper {
 		
 		ReqTechnical rt = new ReqTechnical();
 		rt.setTechId(dto.getRequestId());
+		rt.setArea(dto.getArea());
 		rt.setTechscope(dto.getTechscope());
 		rt.setExp(dto.getExp());
 		rt.setReqdes(dto.getReqdes());

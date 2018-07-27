@@ -79,9 +79,14 @@ public class UserController {
 	public List<UserAccountDTO> getAllUsers(){
 		
 		List<UserAccountDTO> userList = userService.getAllUsers();
-		
 		return userList;
 		
+	}
+	
+	@GetMapping("/user/{userId}")
+	@ResponseBody
+	public UserAccountDTO getUserById(@PathVariable("userId") int userId) {
+		return this.userService.findById(userId);
 	}
 
 }

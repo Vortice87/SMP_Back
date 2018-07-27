@@ -19,10 +19,12 @@ public class Request {
 	@GeneratedValue
 	private Integer id;
 
-
 	@ManyToOne(targetEntity = UserAccount.class, cascade = CascadeType.ALL)
 	@JoinColumn(name ="petitioner", referencedColumnName= "id")
 	private UserAccount petitioner;
+	
+	@Column(nullable = false)
+	private Date creationDate;
 	
 	@Column(nullable = false)
 	private String profile;
@@ -106,6 +108,14 @@ public class Request {
 
 	public void setCvs(List<Cv> cvs) {
 		this.cvs = cvs;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 		
 		

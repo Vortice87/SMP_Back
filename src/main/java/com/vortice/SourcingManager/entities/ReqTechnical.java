@@ -16,6 +16,8 @@ public class ReqTechnical {
 	@GeneratedValue
 	private Integer techId;
 	
+	private String area;
+	
 	private String techscope;
 		
 	private String exp;
@@ -64,6 +66,14 @@ public class ReqTechnical {
 
 	public void setRequest(Request request) {
 		this.request = request;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
 	}
 
 	
