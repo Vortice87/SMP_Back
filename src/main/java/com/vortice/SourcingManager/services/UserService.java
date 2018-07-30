@@ -13,7 +13,7 @@ public interface UserService {
 	public boolean userExists(String username);
 	public boolean deleteUser(int id);
 	public boolean updateUser(UserAccountDTO user);
-	public UserAccountDTO findById(Integer id);
+	public UserAccountDTO findById(int id);
 
 	
 }

@@ -16,16 +16,16 @@ public class ReqTechnical {
 	@GeneratedValue
 	private Integer techId;
 	
+	private String area;
+	
 	private String techscope;
-	
-	private String others;
-	
+		
 	private String exp;
 	
 	private String reqdes;
 	
 	@ManyToOne(targetEntity = Request.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "techReq", referencedColumnName = "id")
+	@JoinColumn(name = "requestId", referencedColumnName = "id")
 	private Request request;
 
 	public Integer getTechId() {
@@ -42,14 +42,6 @@ public class ReqTechnical {
 
 	public void setTechscope(String techscope) {
 		this.techscope = techscope;
-	}
-
-	public String getOthers() {
-		return others;
-	}
-
-	public void setOthers(String others) {
-		this.others = others;
 	}
 
 	public String getExp() {
@@ -74,6 +66,14 @@ public class ReqTechnical {
 
 	public void setRequest(Request request) {
 		this.request = request;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
 	}
 
 	

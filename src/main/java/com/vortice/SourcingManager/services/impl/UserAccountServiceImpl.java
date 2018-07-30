@@ -80,24 +80,14 @@ public class UserAccountServiceImpl implements UserService {
 	@Override
 	public boolean updateUser(UserAccountDTO userDTO) {
 		
-		UserAccount user = UserAccountMapper.DTOto(userDTO);
-		
-//		List<Request> list = new ArrayList<Request>();
-//		if(userDTO.getRequests() != null && userDTO.getRequests().size() > 0) {
-//			for(RequestDTO dto: userDTO.getRequests()) {
-//				Request r = new Request();
-//				r.setId(dto.getId());
-//				user.getRequests().add(r);
-//			}
-//		}
-		
+		UserAccount user = UserAccountMapper.DTOto(userDTO);		
 		this.dao.save(user);
 		boolean success = this.dao.exists(user.getId());
 		return success;
 	}
 
 	@Override
-	public UserAccountDTO findById(Integer id) {
+	public UserAccountDTO findById(int id) {
 		
 		UserAccount user = this.dao.findById(id);
 		UserAccountDTO userDTO = UserAccountMapper.ToDTO(user);

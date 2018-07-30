@@ -10,8 +10,8 @@ public class ReqTechnicalDTO {
 	
 	private String techscope;
 	
-	private String others;
-	
+	private String area;
+		
 	private String exp;
 	
 	private String reqdes;
@@ -32,14 +32,6 @@ public class ReqTechnicalDTO {
 
 	public void setTechscope(String techscope) {
 		this.techscope = techscope;
-	}
-
-	public String getOthers() {
-		return others;
-	}
-
-	public void setOthers(String others) {
-		this.others = others;
 	}
 
 	public String getExp() {
@@ -64,6 +56,14 @@ public class ReqTechnicalDTO {
 
 	public void setRequestId(Integer requestId) {
 		this.requestId = requestId;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
 	}
 	
 
