@@ -16,7 +16,7 @@ public class UserAccountMapper {
 		newDTO.setName(userAccount.getName());
 		newDTO.setLastName(userAccount.getLastName());
 		newDTO.setUsername(userAccount.getUsername());
-		newDTO.setPassword(userAccount.getPassword());
+		newDTO.setPassword(null);
 		newDTO.setProfile(userAccount.getProfile());
 		if (userAccount.getRequests() != null && userAccount.getRequests().size() > 0) {
 			newDTO.setRequests(new ArrayList<RequestDTO>());
