@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,20 +30,21 @@ public class RequestController {
 	@PostMapping("/create")
 	@ResponseBody
 	public boolean createRequest(@RequestBody RequestDTO dto) {
-		
 		boolean success = this.requestService.createRequest(dto);
 		return success;
-		
 	}
 	
 	@GetMapping("/all")
 	@ResponseBody
 	public List<RequestDTO> getAll() {
-		
 		List<RequestDTO> list = requestService.getAll();
-		
 		return list;
-		
+	}
+	
+	@GetMapping("/requestById/{requestId}")
+	@ResponseBody
+	public RequestDTO getRequestByID(@PathVariable("requestId") Integer requestId) {
+		return this.requestService.getRequestById(requestId);
 	}
 
 }
