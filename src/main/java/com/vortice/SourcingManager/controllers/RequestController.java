@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.vortice.SourcingManager.dto.CvDTO;
 import com.vortice.SourcingManager.dto.RequestDTO;
+import com.vortice.SourcingManager.services.CvService;
 import com.vortice.SourcingManager.services.impl.RequestServiceImpl;
 import com.vortice.SourcingManager.services.impl.UserAccountServiceImpl;
 
@@ -26,6 +28,9 @@ public class RequestController {
 	
 	@Autowired
 	private UserAccountServiceImpl userAccountService;
+	
+	@Autowired
+	private CvService cvService;
 	
 	@PostMapping("/create")
 	@ResponseBody
@@ -45,6 +50,15 @@ public class RequestController {
 	@ResponseBody
 	public RequestDTO getRequestByID(@PathVariable("requestId") Integer requestId) {
 		return this.requestService.getRequestById(requestId);
+	}
+	
+	@PostMapping("/addcv")
+	@ResponseBody
+	public boolean addCandidate(@RequestBody CvDTO dto) {
+		if(this.cvService.findByCandidate(dto.getCandidate())){
+			return false;
+		}
+		return this.cvService.createCv(dto);
 	}
 
 }

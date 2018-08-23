@@ -1,5 +1,7 @@
 package com.vortice.SourcingManager.dto;
 
+import java.sql.Date;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -7,12 +9,24 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class CvDTO {
 	
     private Integer cvId;
+    
+    private Integer requestId;
+
+    private String candidate;
+
+    private Date createdDate;
+
+	private String filePath; 
 	
-    private String dni;
+	private String comment;
+
+	private String status;
+
+	private String fileName;
 	
-    private String name;
+	private String fileType;
 	
-	private Integer requestId;
+	private String fileDate;
 
 	public Integer getCvId() {
 		return cvId;
@@ -22,22 +36,6 @@ public class CvDTO {
 		this.cvId = cvId;
 	}
 
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Integer getRequestId() {
 		return requestId;
 	}
@@ -45,6 +43,71 @@ public class CvDTO {
 	public void setRequestId(Integer requestId) {
 		this.requestId = requestId;
 	}
+
+	public String getCandidate() {
+		return candidate;
+	}
+
+	public void setCandidate(String candidate) {
+		this.candidate = candidate;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+
+	public String getFileDate() {
+		return fileDate;
+	}
+
+	public void setFileDate(String fileDate) {
+		this.fileDate = fileDate;
+	}
+	
 	
 	
 }

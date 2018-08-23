@@ -43,7 +43,7 @@ public class Request {
 	private List<ReqTechnical> reqTechs;
 
 	@OneToMany(targetEntity = Cv.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "cvReq", referencedColumnName = "id")
+	@JoinColumn(name = "requestId", referencedColumnName = "id")
 	private List<Cv> cvs;
 
 	public Integer getId() {
