@@ -28,13 +28,17 @@ public class Cv {
 	@Column(nullable = false)
     private Date createdDate;
 	
-	//@Column(nullable = false)
 	private String filePath; 
 	
 	private String comment;
 	
 	@Column(nullable = false)
 	private String status;
+	
+	private String fileName;
+	
+	private String fileType;
+	
 
 	public Integer getCvId() {
 		return cvId;
@@ -91,6 +95,23 @@ public class Cv {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+	
 	
 	
 }

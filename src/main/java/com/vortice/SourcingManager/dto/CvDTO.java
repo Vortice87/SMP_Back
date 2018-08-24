@@ -26,7 +26,7 @@ public class CvDTO {
 	
 	private String fileType;
 	
-	private String fileDate;
+	private String fileData;
 
 	public Integer getCvId() {
 		return cvId;
@@ -100,12 +100,12 @@ public class CvDTO {
 		this.fileType = fileType;
 	}
 
-	public String getFileDate() {
-		return fileDate;
+	public String getFileData() {
+		return fileData;
 	}
 
-	public void setFileDate(String fileDate) {
-		this.fileDate = fileDate;
+	public void setFileData(String fileDate) {
+		this.fileData = fileDate;
 	}
 	
 	

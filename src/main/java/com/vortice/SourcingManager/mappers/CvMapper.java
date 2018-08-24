@@ -14,6 +14,8 @@ public class CvMapper {
 		newDTO.setFilePath(cv.getFilePath());
 		newDTO.setComment(cv.getComment());
 		newDTO.setStatus(cv.getStatus());
+		newDTO.setFileName(cv.getFileName());
+		newDTO.setFileType(cv.getFileType());
 		return newDTO;
 	}
 	
@@ -25,6 +27,8 @@ public class CvMapper {
 		cv.setFilePath(dto.getFilePath());
 		cv.setComment(dto.getComment());
 		cv.setStatus(dto.getStatus());
+		cv.setFileName(dto.getFileName());
+		cv.setFileType(dto.getFileType());
 		return cv;
 	}
 
