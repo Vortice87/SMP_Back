@@ -1,6 +1,7 @@
 package com.vortice.SourcingManager.entities;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.UniqueConstraint;
 
 @Entity(name="CV")
@@ -30,7 +32,9 @@ public class Cv {
 	
 	private String filePath; 
 	
-	private String comment;
+	@OneToMany(targetEntity=Comment.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="cvId", referencedColumnName="cvId")
+	private List<Comment> comments;
 	
 	@Column(nullable = false)
 	private String status;
@@ -80,12 +84,12 @@ public class Cv {
 		this.filePath = filePath;
 	}
 
-	public String getComment() {
-		return comment;
+	public List<Comment> getComments() {
+		return comments;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public String getStatus() {

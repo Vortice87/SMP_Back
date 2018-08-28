@@ -1,6 +1,10 @@
 package com.vortice.SourcingManager.mappers;
 
+import java.util.ArrayList;
+
+import com.vortice.SourcingManager.dto.CommentDTO;
 import com.vortice.SourcingManager.dto.CvDTO;
+import com.vortice.SourcingManager.entities.Comment;
 import com.vortice.SourcingManager.entities.Cv;
 
 public class CvMapper {
@@ -12,7 +16,12 @@ public class CvMapper {
 		newDTO.setCandidate(cv.getCandidate());
 		newDTO.setCreatedDate(cv.getCreatedDate());
 		newDTO.setFilePath(cv.getFilePath());
-		newDTO.setComment(cv.getComment());
+		if(cv.getComments() != null && cv.getComments().size() >0) {
+			newDTO.setComments(new ArrayList<CommentDTO>());
+			for(Comment comment: cv.getComments()) {
+				newDTO.getComments().add(CommentMapper.toDTO(comment));
+			}
+		}
 		newDTO.setStatus(cv.getStatus());
 		newDTO.setFileName(cv.getFileName());
 		newDTO.setFileType(cv.getFileType());
@@ -25,7 +34,12 @@ public class CvMapper {
 		cv.setCandidate(dto.getCandidate());
 		cv.setCreatedDate(dto.getCreatedDate());
 		cv.setFilePath(dto.getFilePath());
-		cv.setComment(dto.getComment());
+		if(dto.getComments() != null && dto.getComments().size() > 0) {
+			cv.setComments(new ArrayList<Comment>());
+			for(CommentDTO commentDTO: dto.getComments()) {
+				cv.getComments().add(CommentMapper.DTOto(commentDTO) );
+			}
+		}
 		cv.setStatus(dto.getStatus());
 		cv.setFileName(dto.getFileName());
 		cv.setFileType(dto.getFileType());

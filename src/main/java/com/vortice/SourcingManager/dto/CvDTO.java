@@ -1,6 +1,7 @@
 package com.vortice.SourcingManager.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -18,7 +19,7 @@ public class CvDTO {
 
 	private String filePath; 
 	
-	private String comment;
+	private List<CommentDTO> comments;
 
 	private String status;
 
@@ -68,12 +69,12 @@ public class CvDTO {
 		this.filePath = filePath;
 	}
 
-	public String getComment() {
-		return comment;
+	public List<CommentDTO> getComments() {
+		return comments;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
 	}
 
 	public String getStatus() {
