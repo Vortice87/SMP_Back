@@ -25,7 +25,7 @@ public class RequestDTO {
 
 	private List<ReqTechnicalDTO> reqTechs;
 
-	private List<CvDTO> cvs;
+	private List<CandidateDTO> candidates;
 
 	public Integer getId() {
 		return id;
@@ -83,12 +83,13 @@ public class RequestDTO {
 		this.reqTechs = reqTechs;
 	}
 
-	public List<CvDTO> getCvs() {
-		return cvs;
+
+	public List<CandidateDTO> getCandidates() {
+		return candidates;
 	}
 
-	public void setCvs(List<CvDTO> cvs) {
-		this.cvs = cvs;
+	public void setCandidates(List<CandidateDTO> candidates) {
+		this.candidates = candidates;
 	}
 
 	public Date getCreationDate() {

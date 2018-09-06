@@ -13,19 +13,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.UniqueConstraint;
 
-@Entity(name="CV")
-public class Cv {
+@Entity(name="CANDIDATE")
+public class Candidate {
 	
 	@Id
 	@GeneratedValue
-    private Integer cvId;
+    private Integer candidateId;
 	
 	@ManyToOne(targetEntity = Request.class, cascade = CascadeType.ALL)
 	@JoinColumn(name ="requestId", referencedColumnName = "id")
 	private Request request;
 		
 	@Column(nullable = false)
-    private String candidate;
+    private String name;
     
 	@Column(nullable = false)
     private Date createdDate;
@@ -33,7 +33,7 @@ public class Cv {
 	private String filePath; 
 	
 	@OneToMany(targetEntity=Comment.class, cascade = CascadeType.ALL)
-	@JoinColumn(name="cvId", referencedColumnName="cvId")
+	@JoinColumn(name="candidateId", referencedColumnName="candidateId")
 	private List<Comment> comments;
 	
 	@Column(nullable = false)
@@ -42,14 +42,13 @@ public class Cv {
 	private String fileName;
 	
 	private String fileType;
-	
 
-	public Integer getCvId() {
-		return cvId;
+	public Integer getCandidateId() {
+		return candidateId;
 	}
 
-	public void setCvId(Integer cvId) {
-		this.cvId = cvId;
+	public void setCandidateId(Integer candidateId) {
+		this.candidateId = candidateId;
 	}
 
 	public Request getRequest() {
@@ -60,12 +59,12 @@ public class Cv {
 		this.request = request;
 	}
 
-	public String getCandidate() {
-		return candidate;
+	public String getName() {
+		return name;
 	}
 
-	public void setCandidate(String candidate) {
-		this.candidate = candidate;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Date getCreatedDate() {
@@ -116,6 +115,6 @@ public class Cv {
 		this.fileType = fileType;
 	}
 	
-	
+
 	
 }

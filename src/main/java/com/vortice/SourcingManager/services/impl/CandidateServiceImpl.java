@@ -12,41 +12,41 @@ import java.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vortice.SourcingManager.dao.CvDao;
+import com.vortice.SourcingManager.dao.CandidateDao;
 import com.vortice.SourcingManager.dao.RequestDao;
-import com.vortice.SourcingManager.dto.CvDTO;
-import com.vortice.SourcingManager.entities.Cv;
+import com.vortice.SourcingManager.dto.CandidateDTO;
+import com.vortice.SourcingManager.entities.Candidate;
 import com.vortice.SourcingManager.entities.Request;
-import com.vortice.SourcingManager.mappers.CvMapper;
-import com.vortice.SourcingManager.services.CvService;
+import com.vortice.SourcingManager.mappers.CandidateMapper;
+import com.vortice.SourcingManager.services.CandidateService;
 
 @Service
-public class CvServiceImpl implements CvService {
+public class CandidateServiceImpl implements CandidateService {
 
 	@Autowired
-	private CvDao cvDao;
+	private CandidateDao candidateDao;
 
 	@Autowired
 	private RequestDao requestDao;
 
 	@Override
-	public boolean createCandidate(CvDTO cvDTO) {
+	public boolean createCandidate(CandidateDTO candidateDTO) {
 
 		boolean success = true;
-		Cv cv = CvMapper.DTOto(cvDTO);
-		Request request = this.requestDao.findById(cvDTO.getRequestId());
-		cv.setRequest(request);
-		this.cvDao.save(cv);
+		Candidate candidate = CandidateMapper.DTOto(candidateDTO);
+		Request request = this.requestDao.findById(candidateDTO.getRequestId());
+		candidate.setRequest(request);
+		this.candidateDao.save(candidate);
 
-		success = this.cvDao.exists(cv.getCvId());
+		success = this.candidateDao.exists(candidate.getCandidateId());
 
 		return success;
 	}
 
 	@Override
-	public boolean findByCandidate(String name) {
-		Cv cv = this.cvDao.findByCandidate(name);
-		if (cv != null) {
+	public boolean findByCandidateName(String name) {
+		Candidate candidate = this.candidateDao.findByName(name);
+		if (candidate != null) {
 			return true;
 		} else {
 			return false;
@@ -86,8 +86,8 @@ public class CvServiceImpl implements CvService {
 	}
 
 	@Override
-	public Cv findByCandidateById(Integer id) {
-		return this.cvDao.findByCvId(id);
+	public Candidate findByCandidateId(Integer id) {
+		return this.candidateDao.findByCandidateId(id);
 	}
 
 }

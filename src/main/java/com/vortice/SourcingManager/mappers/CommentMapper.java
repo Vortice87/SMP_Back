@@ -10,7 +10,7 @@ public class CommentMapper {
 		newDTO.setCommentId(comment.getCommentId());
 		newDTO.setComment(comment.getComment());
 		newDTO.setCreationDate(comment.getCreationDate());
-		newDTO.setCvId(comment.getCv().getCvId());
+		newDTO.setCandidateId(comment.getCandidate().getCandidateId());
 		return newDTO;
 	}
 	

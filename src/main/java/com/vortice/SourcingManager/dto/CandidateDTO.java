@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
-public class CvDTO {
+public class CandidateDTO {
 	
-    private Integer cvId;
+    private Integer candidateId;
     
     private Integer requestId;
 
-    private String candidate;
+    private String name;
 
     private Date createdDate;
 
@@ -29,12 +29,12 @@ public class CvDTO {
 	
 	private String fileData;
 
-	public Integer getCvId() {
-		return cvId;
+	public Integer getCandidateId() {
+		return candidateId;
 	}
 
-	public void setCvId(Integer cvId) {
-		this.cvId = cvId;
+	public void setCandidateId(Integer candidateId) {
+		this.candidateId = candidateId;
 	}
 
 	public Integer getRequestId() {
@@ -45,12 +45,12 @@ public class CvDTO {
 		this.requestId = requestId;
 	}
 
-	public String getCandidate() {
-		return candidate;
+	public String getName() {
+		return name;
 	}
 
-	public void setCandidate(String candidate) {
-		this.candidate = candidate;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Date getCreatedDate() {
@@ -105,10 +105,9 @@ public class CvDTO {
 		return fileData;
 	}
 
-	public void setFileData(String fileDate) {
-		this.fileData = fileDate;
+	public void setFileData(String fileData) {
+		this.fileData = fileData;
 	}
-	
 	
 	
 }

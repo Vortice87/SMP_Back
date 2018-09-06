@@ -42,9 +42,9 @@ public class Request {
 	@JoinColumn(name = "requestId", referencedColumnName = "id")
 	private List<ReqTechnical> reqTechs;
 
-	@OneToMany(targetEntity = Cv.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Candidate.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "requestId", referencedColumnName = "id")
-	private List<Cv> cvs;
+	private List<Candidate> candidates;
 
 	public Integer getId() {
 		return id;
@@ -60,6 +60,14 @@ public class Request {
 
 	public void setPetitioner(UserAccount petitioner) {
 		this.petitioner = petitioner;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	public String getProfile() {
@@ -102,21 +110,14 @@ public class Request {
 		this.reqTechs = reqTechs;
 	}
 
-	public List<Cv> getCvs() {
-		return cvs;
+	public List<Candidate> getCandidates() {
+		return candidates;
 	}
 
-	public void setCvs(List<Cv> cvs) {
-		this.cvs = cvs;
+	public void setCandidates(List<Candidate> candidates) {
+		this.candidates = candidates;
 	}
 
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-		
+	
 		
 }

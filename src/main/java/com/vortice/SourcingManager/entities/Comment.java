@@ -23,9 +23,9 @@ public class Comment {
 	@Column(nullable=false)
 	private Date creationDate;
 	
-	@ManyToOne(targetEntity=Cv.class, cascade = CascadeType.ALL)
-	@JoinColumn(name="cvId", referencedColumnName="cvId")
-	private Cv cv;
+	@ManyToOne(targetEntity=Candidate.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="candidateId", referencedColumnName="candidateId")
+	private Candidate candidate;
 
 	public Integer getCommentId() {
 		return commentId;
@@ -51,12 +51,14 @@ public class Comment {
 		this.creationDate = creationDate;
 	}
 
-	public Cv getCv() {
-		return cv;
+	public Candidate getCandidate() {
+		return candidate;
 	}
 
-	public void setCv(Cv cv) {
-		this.cv = cv;
+	public void setCandidate(Candidate candidate) {
+		this.candidate = candidate;
 	}
+
+
 	
 }

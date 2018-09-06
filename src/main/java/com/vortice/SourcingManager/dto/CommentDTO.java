@@ -10,7 +10,7 @@ public class CommentDTO {
 	
 	private Date creationDate;
 	
-	private Integer cvId;
+	private Integer candidateId;
 
 	public Integer getCommentId() {
 		return commentId;
@@ -36,12 +36,14 @@ public class CommentDTO {
 		this.creationDate = creationDate;
 	}
 
-	public Integer getCvId() {
-		return cvId;
+	public Integer getCandidateId() {
+		return candidateId;
 	}
 
-	public void setCvId(Integer cvId) {
-		this.cvId = cvId;
+	public void setCandidateId(Integer candidateId) {
+		this.candidateId = candidateId;
 	}
+
+
 
 }

@@ -2,10 +2,10 @@ package com.vortice.SourcingManager.mappers;
 
 import java.util.ArrayList;
 
-import com.vortice.SourcingManager.dto.CvDTO;
+import com.vortice.SourcingManager.dto.CandidateDTO;
 import com.vortice.SourcingManager.dto.ReqTechnicalDTO;
 import com.vortice.SourcingManager.dto.RequestDTO;
-import com.vortice.SourcingManager.entities.Cv;
+import com.vortice.SourcingManager.entities.Candidate;
 import com.vortice.SourcingManager.entities.ReqTechnical;
 import com.vortice.SourcingManager.entities.Request;
 
@@ -28,10 +28,10 @@ public class RequestMapper {
 			}
 		}
 		
-		if (request.getCvs() != null && request.getCvs().size() > 0) {
-			newDTO.setCvs(new ArrayList<CvDTO>());
-			for (Cv cv : request.getCvs()) {
-				newDTO.getCvs().add(CvMapper.ToDTO(cv));
+		if (request.getCandidates() != null && request.getCandidates().size() > 0) {
+			newDTO.setCandidates(new ArrayList<CandidateDTO>());
+			for (Candidate candidate : request.getCandidates()) {
+				newDTO.getCandidates().add(CandidateMapper.ToDTO(candidate));
 			}
 		}
 
@@ -55,10 +55,10 @@ public class RequestMapper {
 				request.getReqTechs().add(ReqTechnicalMapper.DTOto(r));
 			}
 		}
-		if (dto.getCvs() != null && dto.getCvs().size() > 0) {
-			request.setCvs(new ArrayList<Cv>());
-			for (CvDTO cv : dto.getCvs()) {
-				request.getCvs().add(CvMapper.DTOto(cv));
+		if (dto.getCandidates() != null && dto.getCandidates().size() > 0) {
+			request.setCandidates(new ArrayList<Candidate>());
+			for (CandidateDTO candidate : dto.getCandidates()) {
+				request.getCandidates().add(CandidateMapper.DTOto(candidate));
 			}
 		}
 
