@@ -1,7 +1,5 @@
 package com.vortice.SourcingManager.dto;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -21,8 +19,6 @@ public class UserAccountDTO {
 	
 	private String profile;
 	
-	private List<RequestDTO> requests;
-
 	public Integer getId() {
 		return id;
 	}
@@ -70,14 +66,5 @@ public class UserAccountDTO {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-
-	public List<RequestDTO> getRequests() {
-		return requests;
-	}
-
-	public void setRequests(List<RequestDTO> requests) {
-		this.requests = requests;
-	}
-	
 
 }

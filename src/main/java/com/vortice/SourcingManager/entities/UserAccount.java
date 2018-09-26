@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -31,7 +32,7 @@ public class UserAccount {
 	@Column(name = "profile", nullable = false)
 	private String profile;
 	
-	@OneToMany(targetEntity = Request.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Request.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name ="petitioner", referencedColumnName= "id")
 	private List<Request> requests;
 
