@@ -11,10 +11,10 @@ import com.vortice.SourcingManager.entities.Request;
 
 public class RequestMapper {
 
-	public static RequestDTO ToDTO(Request request) {
+	public static RequestDTO ToDTOwithRelationships(Request request) {
 		RequestDTO newDTO = new RequestDTO();
 		newDTO.setId(request.getId());
-		newDTO.setPetitionerId(request.getPetitioner().getId());
+		newDTO.setPetitioner(UserAccountMapper.ToDTO(request.getPetitioner()));
 		newDTO.setCreationDate(request.getCreationDate());
 		newDTO.setProfile(request.getProfile());
 		newDTO.setnResources(request.getnResources());
@@ -38,6 +38,17 @@ public class RequestMapper {
 		return newDTO;
 	}
 
+	public static RequestDTO ToDTOwithoutRelationships(Request request) {
+		RequestDTO newDTO = new RequestDTO();
+		newDTO.setId(request.getId());
+		newDTO.setPetitioner(UserAccountMapper.ToDTO(request.getPetitioner()));
+		newDTO.setCreationDate(request.getCreationDate());
+		newDTO.setProfile(request.getProfile());
+		newDTO.setnResources(request.getnResources());
+		newDTO.setStartDate(request.getStartDate());
+		newDTO.setDescTask(request.getDescTask());
+		return newDTO;
+	}
 	public static Request DTOto(RequestDTO dto) {
 
 		Request request = new Request();

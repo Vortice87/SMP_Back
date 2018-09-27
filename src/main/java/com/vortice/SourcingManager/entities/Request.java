@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -42,7 +43,7 @@ public class Request {
 	@JoinColumn(name = "requestId", referencedColumnName = "id")
 	private List<ReqTechnical> reqTechs;
 
-	@OneToMany(targetEntity = Candidate.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Candidate.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "requestId", referencedColumnName = "id")
 	private List<Candidate> candidates;
 

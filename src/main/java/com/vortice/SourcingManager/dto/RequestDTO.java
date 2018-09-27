@@ -11,7 +11,7 @@ public class RequestDTO {
 	
 	private Integer id;
 
-	private Integer petitionerId;
+	private UserAccountDTO petitioner;
 	
 	private Date creationDate;
 	
@@ -35,12 +35,12 @@ public class RequestDTO {
 		this.id = id;
 	}
 
-	public Integer getPetitionerId() {
-		return petitionerId;
+	public UserAccountDTO getPetitioner() {
+		return petitioner;
 	}
 
-	public void setPetitionerId(Integer petitionerId) {
-		this.petitionerId = petitionerId;
+	public void setPetitioner(UserAccountDTO petitioner) {
+		this.petitioner = petitioner;
 	}
 
 	public String getProfile() {

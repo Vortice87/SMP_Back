@@ -27,7 +27,7 @@ public class RequestServiceImpl implements RequestService{
 	public RequestDTO getRequestById(Integer id) {
 		
 		Request request = this.requestDao.findById(id);
-		RequestDTO dto = RequestMapper.ToDTO(request);
+		RequestDTO dto = RequestMapper.ToDTOwithRelationships(request);
 		
 		return dto;
 	}
@@ -36,7 +36,7 @@ public class RequestServiceImpl implements RequestService{
 	public boolean createRequest(RequestDTO requestDTO) {
 
 		Request request = RequestMapper.DTOto(requestDTO);
-		UserAccount petitioner = userDao.findById(requestDTO.getPetitionerId());
+		UserAccount petitioner = userDao.findById(requestDTO.getPetitioner().getId());
 		request.setPetitioner(petitioner);
 		this.requestDao.save(request);
 		boolean success = this.requestDao.exists(request.getId());
@@ -47,14 +47,14 @@ public class RequestServiceImpl implements RequestService{
 	public List<RequestDTO> getAll() {
 		
 		Iterator<Request> iterator = requestDao.findAll().iterator();
-		List<RequestDTO> dtoList = new ArrayList<RequestDTO>();
+		List<RequestDTO> requestDtoList = new ArrayList<RequestDTO>();
 		
 		while(iterator.hasNext()) {
 			
-			dtoList.add(RequestMapper.ToDTO(iterator.next()));
+			requestDtoList.add(RequestMapper.ToDTOwithoutRelationships(iterator.next()));
 		}
 		
-		return dtoList;
+		return requestDtoList;
 	}
 	
 
