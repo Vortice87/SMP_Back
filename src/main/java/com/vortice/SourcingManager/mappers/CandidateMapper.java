@@ -15,7 +15,6 @@ public class CandidateMapper {
 		newDTO.setRequestId(candidate.getRequest().getId());
 		newDTO.setName(candidate.getName());
 		newDTO.setCreatedDate(candidate.getCreatedDate());
-		newDTO.setFilePath(candidate.getFilePath());
 		if(candidate.getComments() != null && candidate.getComments().size() >0) {
 			newDTO.setComments(new ArrayList<CommentDTO>());
 			for(Comment comment: candidate.getComments()) {
@@ -23,8 +22,7 @@ public class CandidateMapper {
 			}
 		}
 		newDTO.setStatus(candidate.getStatus());
-		newDTO.setFileName(candidate.getFileName());
-		newDTO.setFileType(candidate.getFileType());
+		newDTO.setDocument(candidate.getDocument());
 		return newDTO;
 	}
 	
@@ -33,7 +31,6 @@ public class CandidateMapper {
 		candidate.setCandidateId(dto.getCandidateId());
 		candidate.setName(dto.getName());
 		candidate.setCreatedDate(dto.getCreatedDate());
-		candidate.setFilePath(dto.getFilePath());
 		if(dto.getComments() != null && dto.getComments().size() > 0) {
 			candidate.setComments(new ArrayList<Comment>());
 			for(CommentDTO commentDTO: dto.getComments()) {
@@ -41,8 +38,7 @@ public class CandidateMapper {
 			}
 		}
 		candidate.setStatus(dto.getStatus());
-		candidate.setFileName(dto.getFileName());
-		candidate.setFileType(dto.getFileType());
+		candidate.setDocument(dto.getDocument());
 		return candidate;
 	}
 

@@ -64,8 +64,6 @@ public class RequestController {
 		if(this.candidateService.findByCandidateName(dto.getName())){
 			return false;
 		}
-
-		dto.setFilePath(this.candidateService.saveCv(dto.getFileName(), dto.getFileType(), dto.getFileData()));
 		return this.candidateService.createCandidate(dto);
 	}
 	
@@ -75,28 +73,28 @@ public class RequestController {
 		return false;
 	}
 	
-	@GetMapping("/findCvById/{candidateId}")
-	@ResponseBody
-	public ResponseEntity<byte[]> downloadDocument(@PathVariable("candidateId") Integer candidateId) {
-		
-		Candidate candidate = this.candidateService.findByCandidateId(candidateId);
-		File cv = this.candidateService.getFileFromURL(candidate.getFilePath());
-		byte[] doc = null;
-		try {
-			doc = Files.readAllBytes(cv.toPath());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-        // Adding required headers for file conversion
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.parseMediaType(candidate.getFileType()));
-		headers.setContentLength(doc.length);
-		headers.setContentDispositionFormData("inline",candidate.getFileName());
-		headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
-		headers.add("Pragma","no-cache");
-		headers.add("Expires", "0");
-		return  new ResponseEntity<byte[]>(doc, headers, HttpStatus.OK);
-	}
+//	@GetMapping("/findCvById/{candidateId}")
+//	@ResponseBody
+//	public ResponseEntity<byte[]> downloadDocument(@PathVariable("candidateId") Integer candidateId) {
+//		
+//		Candidate candidate = this.candidateService.findByCandidateId(candidateId);
+//		File cv = this.candidateService.getFileFromURL(candidate.getFilePath());
+//		byte[] doc = null;
+//		try {
+//			doc = Files.readAllBytes(cv.toPath());
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//        // Adding required headers for file conversion
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.parseMediaType(candidate.getFileType()));
+//		headers.setContentLength(doc.length);
+//		headers.setContentDispositionFormData("inline",candidate.getFileName());
+//		headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+//		headers.add("Pragma","no-cache");
+//		headers.add("Expires", "0");
+//		return  new ResponseEntity<byte[]>(doc, headers, HttpStatus.OK);
+//	}
 	
 }

@@ -29,9 +29,7 @@ public class Candidate {
     
 	@Column(nullable = false)
     private Date createdDate;
-	
-	private String filePath; 
-	
+		
 	@OneToMany(targetEntity=Comment.class, cascade = CascadeType.ALL)
 	@JoinColumn(name="candidateId", referencedColumnName="candidateId")
 	private List<Comment> comments;
@@ -39,9 +37,8 @@ public class Candidate {
 	@Column(nullable = false)
 	private String status;
 	
-	private String fileName;
-	
-	private String fileType;
+	@Column(nullable = false)
+	private byte[] document;
 
 	public Integer getCandidateId() {
 		return candidateId;
@@ -75,14 +72,6 @@ public class Candidate {
 		this.createdDate = createdDate;
 	}
 
-	public String getFilePath() {
-		return filePath;
-	}
-
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
-
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -99,22 +88,13 @@ public class Candidate {
 		this.status = status;
 	}
 
-	public String getFileName() {
-		return fileName;
+	public byte[] getDocument() {
+		return document;
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setDocument(byte[] document) {
+		this.document = document;
 	}
-
-	public String getFileType() {
-		return fileType;
-	}
-
-	public void setFileType(String fileType) {
-		this.fileType = fileType;
-	}
-	
 
 	
 }
