@@ -1,8 +1,6 @@
 package com.vortice.SourcingManager.controllers;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vortice.SourcingManager.dto.CandidateDTO;
+import com.vortice.SourcingManager.dto.DocumentDTO;
 import com.vortice.SourcingManager.dto.RequestDTO;
 import com.vortice.SourcingManager.entities.Candidate;
 import com.vortice.SourcingManager.services.CandidateService;
 import com.vortice.SourcingManager.services.impl.RequestServiceImpl;
-import com.vortice.SourcingManager.services.impl.UserAccountServiceImpl;
 
 @RestController
 @RequestMapping("/requests")
@@ -73,28 +71,13 @@ public class RequestController {
 		return false;
 	}
 	
-//	@GetMapping("/findCvById/{candidateId}")
-//	@ResponseBody
-//	public ResponseEntity<byte[]> downloadDocument(@PathVariable("candidateId") Integer candidateId) {
-//		
-//		Candidate candidate = this.candidateService.findByCandidateId(candidateId);
-//		File cv = this.candidateService.getFileFromURL(candidate.getFilePath());
-//		byte[] doc = null;
-//		try {
-//			doc = Files.readAllBytes(cv.toPath());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//        // Adding required headers for file conversion
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.setContentType(MediaType.parseMediaType(candidate.getFileType()));
-//		headers.setContentLength(doc.length);
-//		headers.setContentDispositionFormData("inline",candidate.getFileName());
-//		headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
-//		headers.add("Pragma","no-cache");
-//		headers.add("Expires", "0");
-//		return  new ResponseEntity<byte[]>(doc, headers, HttpStatus.OK);
-//	}
+	@GetMapping("/findCvById/{candidateId}")
+	@ResponseBody
+	public ResponseEntity<DocumentDTO> downloadDocument(@PathVariable("candidateId") Integer candidateId) {
+		Candidate candidate = this.candidateService.findByCandidateId(candidateId);
+		DocumentDTO document = new DocumentDTO(); 
+		document.setDocumentBase64(Base64.getEncoder().encodeToString(candidate.getDocument()));
+		return  new ResponseEntity<DocumentDTO>(document,HttpStatus.OK);
+	}
 	
 }

@@ -37,7 +37,7 @@ public class Candidate {
 	@Column(nullable = false)
 	private String status;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, length=100000)
 	private byte[] document;
 
 	public Integer getCandidateId() {

@@ -1,6 +1,7 @@
 package com.vortice.SourcingManager.mappers;
 
 import java.util.ArrayList;
+import java.util.Base64;
 
 import com.vortice.SourcingManager.dto.CommentDTO;
 import com.vortice.SourcingManager.dto.CandidateDTO;
@@ -22,7 +23,6 @@ public class CandidateMapper {
 			}
 		}
 		newDTO.setStatus(candidate.getStatus());
-		newDTO.setDocument(candidate.getDocument());
 		return newDTO;
 	}
 	
@@ -38,7 +38,8 @@ public class CandidateMapper {
 			}
 		}
 		candidate.setStatus(dto.getStatus());
-		candidate.setDocument(dto.getDocument());
+		byte[] docDecoded = Base64.getDecoder().decode(dto.getDocumentBase64());
+		candidate.setDocument(docDecoded);
 		return candidate;
 	}
 
