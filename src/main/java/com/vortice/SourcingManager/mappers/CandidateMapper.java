@@ -23,6 +23,7 @@ public class CandidateMapper {
 			}
 		}
 		newDTO.setStatus(candidate.getStatus());
+		newDTO.setDocumentBase64(Base64.getEncoder().encodeToString(candidate.getDocument()));
 		return newDTO;
 	}
 	

@@ -20,7 +20,7 @@ public class Request {
 	@GeneratedValue
 	private Integer id;
 
-	@ManyToOne(targetEntity = UserAccount.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = UserAccount.class)
 	@JoinColumn(name ="petitioner", referencedColumnName= "id")
 	private UserAccount petitioner;
 	

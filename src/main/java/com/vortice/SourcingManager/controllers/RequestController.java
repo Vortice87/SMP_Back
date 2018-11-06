@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vortice.SourcingManager.dto.CandidateDTO;
+import com.vortice.SourcingManager.dto.CommentDTO;
 import com.vortice.SourcingManager.dto.DocumentDTO;
 import com.vortice.SourcingManager.dto.RequestDTO;
 import com.vortice.SourcingManager.entities.Candidate;
@@ -55,29 +56,5 @@ public class RequestController {
 	public RequestDTO getRequestByID(@PathVariable("requestId") Integer requestId) {
 		return this.requestService.getRequestById(requestId);
 	}
-	
-	@PostMapping("/addCandidate")
-	@ResponseBody
-	public boolean addCandidate(@RequestBody CandidateDTO dto) {
-		if(this.candidateService.findByCandidateName(dto.getName())){
-			return false;
-		}
-		return this.candidateService.createCandidate(dto);
-	}
-	
-	@PutMapping("/updatecv")
-	@ResponseBody
-	public boolean updateCandidate(@RequestBody CandidateDTO dto) {
-		return false;
-	}
-	
-	@GetMapping("/findCvById/{candidateId}")
-	@ResponseBody
-	public ResponseEntity<DocumentDTO> downloadDocument(@PathVariable("candidateId") Integer candidateId) {
-		Candidate candidate = this.candidateService.findByCandidateId(candidateId);
-		DocumentDTO document = new DocumentDTO(); 
-		document.setDocumentBase64(Base64.getEncoder().encodeToString(candidate.getDocument()));
-		return  new ResponseEntity<DocumentDTO>(document,HttpStatus.OK);
-	}
-	
+		
 }

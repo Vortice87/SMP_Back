@@ -10,7 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity(name="COMMENT")
+@Getter
+@Setter
 public class Comment {
 	
 	@Id
@@ -18,47 +23,13 @@ public class Comment {
 	private Integer commentId;
 	
 	@Column(nullable=false)
-	private String comment;
+	private String description;
 	
 	@Column(nullable=false)
 	private Date creationDate;
 	
-	@ManyToOne(targetEntity=Candidate.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity=Candidate.class)
 	@JoinColumn(name="candidateId", referencedColumnName="candidateId")
 	private Candidate candidate;
 
-	public Integer getCommentId() {
-		return commentId;
-	}
-
-	public void setCommentId(Integer commentId) {
-		this.commentId = commentId;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	public Candidate getCandidate() {
-		return candidate;
-	}
-
-	public void setCandidate(Candidate candidate) {
-		this.candidate = candidate;
-	}
-
-
-	
 }
