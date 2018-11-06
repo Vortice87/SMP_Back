@@ -6,7 +6,7 @@ public class CommentDTO {
 	
 	private Integer commentId;
 	
-	private String comment;
+	private String description;
 	
 	private Date creationDate;
 	
@@ -20,12 +20,12 @@ public class CommentDTO {
 		this.commentId = commentId;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getCreationDate() {
@@ -43,7 +43,5 @@ public class CommentDTO {
 	public void setCandidateId(Integer candidateId) {
 		this.candidateId = candidateId;
 	}
-
-
 
 }

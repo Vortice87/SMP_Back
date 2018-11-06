@@ -6,6 +6,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @JsonInclude(Include.NON_NULL)
 public class CandidateDTO {
 	
@@ -17,97 +22,10 @@ public class CandidateDTO {
 
     private Date createdDate;
 
-	private String filePath; 
-	
 	private List<CommentDTO> comments;
 
 	private String status;
-
-	private String fileName;
 	
-	private String fileType;
-	
-	private String fileData;
-
-	public Integer getCandidateId() {
-		return candidateId;
-	}
-
-	public void setCandidateId(Integer candidateId) {
-		this.candidateId = candidateId;
-	}
-
-	public Integer getRequestId() {
-		return requestId;
-	}
-
-	public void setRequestId(Integer requestId) {
-		this.requestId = requestId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public String getFilePath() {
-		return filePath;
-	}
-
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
-
-	public List<CommentDTO> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentDTO> comments) {
-		this.comments = comments;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
-	public String getFileType() {
-		return fileType;
-	}
-
-	public void setFileType(String fileType) {
-		this.fileType = fileType;
-	}
-
-	public String getFileData() {
-		return fileData;
-	}
-
-	public void setFileData(String fileData) {
-		this.fileData = fileData;
-	}
-	
+	private String documentBase64;
 	
 }

@@ -1,6 +1,7 @@
 package com.vortice.SourcingManager.mappers;
 
 import java.util.ArrayList;
+import java.util.Base64;
 
 import com.vortice.SourcingManager.dto.CommentDTO;
 import com.vortice.SourcingManager.dto.CandidateDTO;
@@ -15,7 +16,6 @@ public class CandidateMapper {
 		newDTO.setRequestId(candidate.getRequest().getId());
 		newDTO.setName(candidate.getName());
 		newDTO.setCreatedDate(candidate.getCreatedDate());
-		newDTO.setFilePath(candidate.getFilePath());
 		if(candidate.getComments() != null && candidate.getComments().size() >0) {
 			newDTO.setComments(new ArrayList<CommentDTO>());
 			for(Comment comment: candidate.getComments()) {
@@ -23,8 +23,7 @@ public class CandidateMapper {
 			}
 		}
 		newDTO.setStatus(candidate.getStatus());
-		newDTO.setFileName(candidate.getFileName());
-		newDTO.setFileType(candidate.getFileType());
+		newDTO.setDocumentBase64(Base64.getEncoder().encodeToString(candidate.getDocument()));
 		return newDTO;
 	}
 	
@@ -33,7 +32,6 @@ public class CandidateMapper {
 		candidate.setCandidateId(dto.getCandidateId());
 		candidate.setName(dto.getName());
 		candidate.setCreatedDate(dto.getCreatedDate());
-		candidate.setFilePath(dto.getFilePath());
 		if(dto.getComments() != null && dto.getComments().size() > 0) {
 			candidate.setComments(new ArrayList<Comment>());
 			for(CommentDTO commentDTO: dto.getComments()) {
@@ -41,8 +39,8 @@ public class CandidateMapper {
 			}
 		}
 		candidate.setStatus(dto.getStatus());
-		candidate.setFileName(dto.getFileName());
-		candidate.setFileType(dto.getFileType());
+		byte[] docDecoded = Base64.getDecoder().decode(dto.getDocumentBase64());
+		candidate.setDocument(docDecoded);
 		return candidate;
 	}
 
