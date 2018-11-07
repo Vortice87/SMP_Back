@@ -6,98 +6,42 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@JsonInclude(Include.NON_NULL)
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * The Class RequestDTO.
+ */
+@Getter
+@Setter
 public class RequestDTO {
 	
+	/** The id. */
 	private Integer id;
 
+	/** The petitioner. */
 	private UserAccountDTO petitioner;
 	
+	/** The creation date. */
 	private Date creationDate;
 	
+	/** The profile. */
 	private String profile;
 
+	/** The n resources. */
 	private String nResources;
 
+	/** The start date. */
 	private Date startDate;
 	
+	/** The desc task. */
 	private String descTask;
 
+	/** The req techs. */
 	private List<ReqTechnicalDTO> reqTechs;
 
+	/** The candidates. */
 	private List<CandidateDTO> candidates;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public UserAccountDTO getPetitioner() {
-		return petitioner;
-	}
-
-	public void setPetitioner(UserAccountDTO petitioner) {
-		this.petitioner = petitioner;
-	}
-
-	public String getProfile() {
-		return profile;
-	}
-
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-
-	public String getnResources() {
-		return nResources;
-	}
-
-	public void setnResources(String nResources) {
-		this.nResources = nResources;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getDescTask() {
-		return descTask;
-	}
-
-	public void setDescTask(String descTask) {
-		this.descTask = descTask;
-	}
-
-	public List<ReqTechnicalDTO> getReqTechs() {
-		return reqTechs;
-	}
-
-	public void setReqTechs(List<ReqTechnicalDTO> reqTechs) {
-		this.reqTechs = reqTechs;
-	}
-
-
-	public List<CandidateDTO> getCandidates() {
-		return candidates;
-	}
-
-	public void setCandidates(List<CandidateDTO> candidates) {
-		this.candidates = candidates;
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
 	
 }

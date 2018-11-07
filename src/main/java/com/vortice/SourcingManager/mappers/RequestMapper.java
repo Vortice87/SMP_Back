@@ -9,15 +9,24 @@ import com.vortice.SourcingManager.entities.Candidate;
 import com.vortice.SourcingManager.entities.ReqTechnical;
 import com.vortice.SourcingManager.entities.Request;
 
+/**
+ * The Class RequestMapper.
+ */
 public class RequestMapper {
 
+	/**
+	 * To DT owith relationships.
+	 *
+	 * @param request the request
+	 * @return the request DTO
+	 */
 	public static RequestDTO ToDTOwithRelationships(Request request) {
 		RequestDTO newDTO = new RequestDTO();
 		newDTO.setId(request.getId());
 		newDTO.setPetitioner(UserAccountMapper.ToDTO(request.getPetitioner()));
 		newDTO.setCreationDate(request.getCreationDate());
 		newDTO.setProfile(request.getProfile());
-		newDTO.setnResources(request.getnResources());
+		newDTO.setNResources(request.getNResources());
 		newDTO.setStartDate(request.getStartDate());
 		newDTO.setDescTask(request.getDescTask());
 
@@ -38,17 +47,30 @@ public class RequestMapper {
 		return newDTO;
 	}
 
+	/**
+	 * To DT owithout relationships.
+	 *
+	 * @param request the request
+	 * @return the request DTO
+	 */
 	public static RequestDTO ToDTOwithoutRelationships(Request request) {
 		RequestDTO newDTO = new RequestDTO();
 		newDTO.setId(request.getId());
 		newDTO.setPetitioner(UserAccountMapper.ToDTO(request.getPetitioner()));
 		newDTO.setCreationDate(request.getCreationDate());
 		newDTO.setProfile(request.getProfile());
-		newDTO.setnResources(request.getnResources());
+		newDTO.setNResources(request.getNResources());
 		newDTO.setStartDate(request.getStartDate());
 		newDTO.setDescTask(request.getDescTask());
 		return newDTO;
 	}
+	
+	/**
+	 * DT oto.
+	 *
+	 * @param dto the dto
+	 * @return the request
+	 */
 	public static Request DTOto(RequestDTO dto) {
 
 		Request request = new Request();
@@ -56,7 +78,7 @@ public class RequestMapper {
 		request.setPetitioner(null);
 		request.setCreationDate(dto.getCreationDate());
 		request.setProfile(dto.getProfile());
-		request.setnResources(dto.getnResources());
+		request.setNResources(dto.getNResources());
 		request.setStartDate(dto.getStartDate());
 		request.setDescTask(dto.getDescTask());
 

@@ -19,20 +19,36 @@ import com.vortice.SourcingManager.dto.CommentDTO;
 import com.vortice.SourcingManager.dto.DocumentDTO;
 import com.vortice.SourcingManager.services.CandidateService;
 
+/**
+ * The Class CandidateController.
+ */
 @RestController
 @RequestMapping("/candidates")
 @CrossOrigin("*")
 public class CandidateController {
 	
+	/** The candidate service. */
 	@Autowired
 	private CandidateService candidateService;
 	
+	/**
+	 * Gets the candidate by id.
+	 *
+	 * @param candidateId the candidate id
+	 * @return the candidate by id
+	 */
 	@RequestMapping("/getCandidateById/{candidateId}")
 	@ResponseBody
 	public CandidateDTO getCandidateById(@PathVariable("candidateId") Integer candidateId) {
 		return this.candidateService.findByCandidateId(candidateId);
 	}
 		
+	/**
+	 * Adds the candidate.
+	 *
+	 * @param dto the dto
+	 * @return true, if successful
+	 */
 	@PostMapping("/addCandidate")
 	@ResponseBody
 	public boolean addCandidate(@RequestBody CandidateDTO dto) {
@@ -42,18 +58,47 @@ public class CandidateController {
 		return this.candidateService.createCandidate(dto);
 	}
 	
+	/**
+	 * Update candidate.
+	 *
+	 * @param dto the dto
+	 * @return true, if successful
+	 */
+	@PostMapping("/updateCandidate")
+	public boolean updateCandidate(@RequestBody CandidateDTO dto) {
+		return this.candidateService.updateCandidate(dto);
+	}
+	
+	/**
+	 * Adds the comment.
+	 *
+	 * @param dto the dto
+	 * @return true, if successful
+	 */
 	@PostMapping("/addComment")
 	@ResponseBody
 	public boolean addComment(@RequestBody CommentDTO dto) {
 		return this.candidateService.createComment(dto);
 	}
 	
+	/**
+	 * Delete comment.
+	 *
+	 * @param commentId the comment id
+	 * @return true, if successful
+	 */
 	@DeleteMapping("/deleteComment/{commentId}")
 	@ResponseBody
 	public boolean deleteComment(@PathVariable("commentId") Integer commentId) {
 		return this.candidateService.deleteComment(commentId);
 	}
 
+	/**
+	 * Download document.
+	 *
+	 * @param candidateId the candidate id
+	 * @return the response entity
+	 */
 	@GetMapping("/findCvById/{candidateId}")
 	@ResponseBody
 	public ResponseEntity<DocumentDTO> downloadDocument(@PathVariable("candidateId") Integer candidateId) {

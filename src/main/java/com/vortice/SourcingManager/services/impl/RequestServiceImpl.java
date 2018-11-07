@@ -14,15 +14,23 @@ import com.vortice.SourcingManager.entities.UserAccount;
 import com.vortice.SourcingManager.mappers.RequestMapper;
 import com.vortice.SourcingManager.services.RequestService;
 
+/**
+ * The Class RequestServiceImpl.
+ */
 @Service
 public class RequestServiceImpl implements RequestService{
 	
+	/** The request dao. */
 	@Autowired
 	private RequestDao requestDao;
 	
+	/** The user dao. */
 	@Autowired
 	private UserDao userDao;
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.RequestService#getRequestById(java.lang.Integer)
+	 */
 	@Override
 	public RequestDTO getRequestById(Integer id) {
 		
@@ -32,6 +40,9 @@ public class RequestServiceImpl implements RequestService{
 		return dto;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.RequestService#createRequest(com.vortice.SourcingManager.dto.RequestDTO)
+	 */
 	@Override
 	public boolean createRequest(RequestDTO requestDTO) {
 
@@ -43,6 +54,9 @@ public class RequestServiceImpl implements RequestService{
 		return success;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.RequestService#getAll()
+	 */
 	@Override
 	public List<RequestDTO> getAll() {
 		

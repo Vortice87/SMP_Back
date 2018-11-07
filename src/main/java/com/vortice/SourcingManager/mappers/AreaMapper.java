@@ -8,8 +8,17 @@ import com.vortice.SourcingManager.dto.DetalleDTO;
 import com.vortice.SourcingManager.entities.Area;
 import com.vortice.SourcingManager.entities.Detalle;
 
+/**
+ * The Class AreaMapper.
+ */
 public class AreaMapper {
 
+	/**
+	 * To DTO.
+	 *
+	 * @param area the area
+	 * @return the area DTO
+	 */
 	public static AreaDTO toDTO(Area area) {
 		AreaDTO newdto = new AreaDTO();
 		newdto.setAreaId(area.getAreaId());
@@ -24,6 +33,12 @@ public class AreaMapper {
 		return newdto;
 	}
 	
+	/**
+	 * DT oto.
+	 *
+	 * @param dto the dto
+	 * @return the area
+	 */
 	public static Area DTOto(AreaDTO dto) {
 		
 		Area area = new Area();

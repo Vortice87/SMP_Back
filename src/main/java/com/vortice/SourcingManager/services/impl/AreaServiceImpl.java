@@ -19,6 +19,9 @@ public class AreaServiceImpl implements AreaService{
 	@Autowired
 	private AreaDao areaDao;
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.AreaService#findAll()
+	 */
 	@Override
 	public List<AreaDTO> findAll() {
 		

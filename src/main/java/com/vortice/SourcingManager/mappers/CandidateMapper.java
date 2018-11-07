@@ -8,8 +8,17 @@ import com.vortice.SourcingManager.dto.CandidateDTO;
 import com.vortice.SourcingManager.entities.Comment;
 import com.vortice.SourcingManager.entities.Candidate;
 
+/**
+ * The Class CandidateMapper.
+ */
 public class CandidateMapper {
 	
+	/**
+	 * To DTO.
+	 *
+	 * @param candidate the candidate
+	 * @return the candidate DTO
+	 */
 	public static CandidateDTO ToDTO(Candidate candidate) {
 		CandidateDTO newDTO = new CandidateDTO();
 		newDTO.setCandidateId(candidate.getCandidateId());
@@ -27,6 +36,12 @@ public class CandidateMapper {
 		return newDTO;
 	}
 	
+	/**
+	 * DT oto.
+	 *
+	 * @param dto the dto
+	 * @return the candidate
+	 */
 	public static Candidate DTOto(CandidateDTO dto) {
 		Candidate candidate = new Candidate();
 		candidate.setCandidateId(dto.getCandidateId());

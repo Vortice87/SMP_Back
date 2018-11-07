@@ -15,12 +15,19 @@ import com.vortice.SourcingManager.entities.UserAccount;
 import com.vortice.SourcingManager.mappers.UserAccountMapper;
 import com.vortice.SourcingManager.services.UserService;
 
+/**
+ * The Class UserAccountServiceImpl.
+ */
 @Service
 public class UserAccountServiceImpl implements UserService {
 
+	/** The dao. */
 	@Autowired
 	private UserDao dao;
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.UserService#loginAuth(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public UserAccountDTO loginAuth(String username, String password) {
 
@@ -35,6 +42,9 @@ public class UserAccountServiceImpl implements UserService {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.UserService#getAllUsers()
+	 */
 	@Override
 	public List<UserAccountDTO> getAllUsers() {
 
@@ -50,6 +60,9 @@ public class UserAccountServiceImpl implements UserService {
 		return listDTO;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.UserService#createUser(com.vortice.SourcingManager.dto.UserAccountDTO)
+	 */
 	@Override
 	public boolean createUser(UserAccountDTO userDTO) {
 		
@@ -60,6 +73,9 @@ public class UserAccountServiceImpl implements UserService {
 		return success;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.UserService#userExists(java.lang.String)
+	 */
 	@Override
 	public boolean userExists(String username) {
 
@@ -70,6 +86,9 @@ public class UserAccountServiceImpl implements UserService {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.UserService#deleteUser(int)
+	 */
 	@Override
 	public boolean deleteUser(int id) {
 		this.dao.delete(id);
@@ -77,6 +96,9 @@ public class UserAccountServiceImpl implements UserService {
 		return success;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.UserService#updateUser(com.vortice.SourcingManager.dto.UserAccountDTO)
+	 */
 	@Override
 	public boolean updateUser(UserAccountDTO userDTO) {
 		
@@ -86,6 +108,9 @@ public class UserAccountServiceImpl implements UserService {
 		return success;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.UserService#findById(int)
+	 */
 	@Override
 	public UserAccountDTO findById(int id) {
 		

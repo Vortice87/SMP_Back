@@ -13,112 +13,55 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * The Class Request.
+ */
+@Getter
+@Setter
 @Entity(name = "REQUEST")
 public class Request {
 
+	/** The id. */
 	@Id
 	@GeneratedValue
 	private Integer id;
 
+	/** The petitioner. */
 	@ManyToOne(targetEntity = UserAccount.class)
 	@JoinColumn(name ="petitioner", referencedColumnName= "id")
 	private UserAccount petitioner;
 	
+	/** The creation date. */
 	@Column(nullable = false)
 	private Date creationDate;
 	
+	/** The profile. */
 	@Column(nullable = false)
 	private String profile;
 
+	/** The n resources. */
 	@Column(nullable = false)
 	private String nResources;
 
+	/** The start date. */
 	@Column(nullable = false)
 	private Date startDate;
 
+	/** The desc task. */
 	@Column(nullable = false)
 	private String descTask;
 
+	/** The req techs. */
 	@OneToMany(targetEntity = ReqTechnical.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "requestId", referencedColumnName = "id")
 	private List<ReqTechnical> reqTechs;
 
+	/** The candidates. */
 	@OneToMany(targetEntity = Candidate.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "requestId", referencedColumnName = "id")
-	private List<Candidate> candidates;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public UserAccount getPetitioner() {
-		return petitioner;
-	}
-
-	public void setPetitioner(UserAccount petitioner) {
-		this.petitioner = petitioner;
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	public String getProfile() {
-		return profile;
-	}
-
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-
-	public String getnResources() {
-		return nResources;
-	}
-
-	public void setnResources(String nResources) {
-		this.nResources = nResources;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getDescTask() {
-		return descTask;
-	}
-
-	public void setDescTask(String descTask) {
-		this.descTask = descTask;
-	}
-
-	public List<ReqTechnical> getReqTechs() {
-		return reqTechs;
-	}
-
-	public void setReqTechs(List<ReqTechnical> reqTechs) {
-		this.reqTechs = reqTechs;
-	}
-
-	public List<Candidate> getCandidates() {
-		return candidates;
-	}
-
-	public void setCandidates(List<Candidate> candidates) {
-		this.candidates = candidates;
-	}
-
-	
+	private List<Candidate> candidates;	
 		
 }

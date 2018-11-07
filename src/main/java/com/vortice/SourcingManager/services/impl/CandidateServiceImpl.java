@@ -49,6 +49,25 @@ public class CandidateServiceImpl implements CandidateService {
 	}
 
 	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.CandidateService#updateCandidate(com.vortice.SourcingManager.dto.CandidateDTO)
+	 */
+	@Override
+	public boolean updateCandidate(CandidateDTO dto) {
+		Candidate candidate = CandidateMapper.DTOto(dto);
+		Request request = this.requestDao.findById(dto.getRequestId());
+		if(candidate.getComments() != null) {
+		for(Comment comment : candidate.getComments()) {
+			comment.setCandidate(candidate);
+		}
+		}
+		candidate.setRequest(request);
+		if(this.candidateDao.save(candidate) != null) {
+			return true;
+		}
+		return false;
+	}	
+
+	/* (non-Javadoc)
 	 * @see com.vortice.SourcingManager.services.CandidateService#findByCandidateName(java.lang.String)
 	 */
 	@Override

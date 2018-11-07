@@ -15,14 +15,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vortice.SourcingManager.dto.UserAccountDTO;
 import com.vortice.SourcingManager.services.impl.UserAccountServiceImpl;
 
+/**
+ * The Class UserController.
+ */
 @RestController
 @RequestMapping("/users")
 @CrossOrigin(origins = "*")
 public class UserController {
 	
+	/** The user service. */
 	@Autowired
 	private UserAccountServiceImpl userService;
 	
+	/**
+	 * Login auth.
+	 *
+	 * @param user the user
+	 * @return the user account DTO
+	 */
 	@PostMapping("/authentication")
 	@ResponseBody
 	public UserAccountDTO loginAuth(@RequestBody UserAccountDTO user) {
@@ -33,6 +43,12 @@ public class UserController {
 
 	}
 	
+	/**
+	 * Creates the user.
+	 *
+	 * @param user the user
+	 * @return true, if successful
+	 */
 	@PostMapping("/create")
 	@ResponseBody
 	public boolean createUser(@RequestBody UserAccountDTO user) {
@@ -42,6 +58,12 @@ public class UserController {
 		
 	}
 	
+	/**
+	 * User exists.
+	 *
+	 * @param username the username
+	 * @return true, if successful
+	 */
 	@GetMapping("/exists/{username:.+}")
 	@ResponseBody
 	public boolean userExists(@PathVariable String username) {
@@ -54,6 +76,12 @@ public class UserController {
 		
 	}
 	
+	/**
+	 * Delete user.
+	 *
+	 * @param id the id
+	 * @return true, if successful
+	 */
 	@GetMapping("/delete/{id}")
 	@ResponseBody
 	public boolean deleteUser(@PathVariable int id) {
@@ -63,6 +91,12 @@ public class UserController {
 		
 	}
 	
+	/**
+	 * Modify user.
+	 *
+	 * @param user the user
+	 * @return true, if successful
+	 */
 	@PostMapping("/update")
 	@ResponseBody
 	public boolean modifyUser(@RequestBody UserAccountDTO user) {
@@ -72,6 +106,11 @@ public class UserController {
 		
 	}	
 	
+	/**
+	 * Gets the all users.
+	 *
+	 * @return the all users
+	 */
 	@GetMapping("/all")
 	@ResponseBody
 	public List<UserAccountDTO> getAllUsers(){
@@ -81,6 +120,12 @@ public class UserController {
 		
 	}
 	
+	/**
+	 * Gets the user by id.
+	 *
+	 * @param userId the user id
+	 * @return the user by id
+	 */
 	@GetMapping("/user/{userId}")
 	@ResponseBody
 	public UserAccountDTO getUserById(@PathVariable("userId") int userId) {

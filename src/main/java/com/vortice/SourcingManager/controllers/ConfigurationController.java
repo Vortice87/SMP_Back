@@ -12,14 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vortice.SourcingManager.dto.AreaDTO;
 import com.vortice.SourcingManager.services.impl.AreaServiceImpl;
 
+/**
+ * The Class ConfigurationController.
+ */
 @RestController
 @RequestMapping("/configuration")
 @CrossOrigin("*")
 public class ConfigurationController {
 	
+	/** The area service. */
 	@Autowired
 	private AreaServiceImpl areaService;
 	
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	@GetMapping("/all")
 	@ResponseBody
 	public List<AreaDTO> findAll() {

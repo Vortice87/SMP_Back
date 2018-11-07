@@ -18,6 +18,14 @@ public interface CandidateService {
 	CandidateDTO findByCandidateId(Integer id);
 	
 	/**
+	 * Update candidate.
+	 *
+	 * @param dto the dto
+	 * @return true, if successful
+	 */
+	boolean updateCandidate(CandidateDTO dto);
+	
+	/**
 	 * Creates the candidate.
 	 *
 	 * @param candidateDTO the candidate DTO

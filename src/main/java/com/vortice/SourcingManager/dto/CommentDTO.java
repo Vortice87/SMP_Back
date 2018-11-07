@@ -1,47 +1,27 @@
 package com.vortice.SourcingManager.dto;
 
 import java.sql.Date;
+import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * The Class CommentDTO.
+ */
+@Getter
+@Setter
 public class CommentDTO {
 	
+	/** The comment id. */
 	private Integer commentId;
 	
+	/** The description. */
 	private String description;
 	
+	/** The creation date. */
 	private Date creationDate;
 	
+	/** The candidate id. */
 	private Integer candidateId;
-
-	public Integer getCommentId() {
-		return commentId;
-	}
-
-	public void setCommentId(Integer commentId) {
-		this.commentId = commentId;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	public Integer getCandidateId() {
-		return candidateId;
-	}
-
-	public void setCandidateId(Integer candidateId) {
-		this.candidateId = candidateId;
-	}
-
 }

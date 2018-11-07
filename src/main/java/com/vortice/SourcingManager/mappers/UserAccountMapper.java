@@ -3,8 +3,17 @@ package com.vortice.SourcingManager.mappers;
 import com.vortice.SourcingManager.dto.UserAccountDTO;
 import com.vortice.SourcingManager.entities.UserAccount;
 
+/**
+ * The Class UserAccountMapper.
+ */
 public class UserAccountMapper {
 
+	/**
+	 * To DTO.
+	 *
+	 * @param userAccount the user account
+	 * @return the user account DTO
+	 */
 	public static UserAccountDTO ToDTO(UserAccount userAccount) {
 
 		UserAccountDTO newDTO = new UserAccountDTO();
@@ -16,6 +25,12 @@ public class UserAccountMapper {
 		return newDTO;
 	}
 
+	/**
+	 * DT oto.
+	 *
+	 * @param dto the dto
+	 * @return the user account
+	 */
 	public static UserAccount DTOto(UserAccountDTO dto) {
 
 		UserAccount user = new UserAccount();
