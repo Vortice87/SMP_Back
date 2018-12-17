@@ -11,14 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.UniqueConstraint;
-
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * The Class Candidate.
  */
+
 @Getter
 @Setter
 @Entity(name="CANDIDATE")
@@ -41,6 +40,9 @@ public class Candidate {
 	/** The created date. */
 	@Column(nullable = false)
     private Date createdDate;
+	
+	/** The interview date. */
+    private Date interviewDate;
 		
 	/** The comments. */
 	@OneToMany(targetEntity=Comment.class, cascade = CascadeType.ALL)

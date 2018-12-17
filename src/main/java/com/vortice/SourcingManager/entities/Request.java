@@ -13,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.vortice.SourcingManager.dto.CandidateDTO;
+import com.vortice.SourcingManager.dto.ReqTechnicalDTO;
+import com.vortice.SourcingManager.dto.UserAccountDTO;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,12 +48,16 @@ public class Request {
 
 	/** The n resources. */
 	@Column(nullable = false)
-	private String nResources;
+	private String resources;
 
 	/** The start date. */
 	@Column(nullable = false)
 	private Date startDate;
 
+	/** The status. */
+	@Column(nullable = false)
+	private String status;
+	
 	/** The desc task. */
 	@Column(nullable = false)
 	private String descTask;
@@ -62,6 +70,6 @@ public class Request {
 	/** The candidates. */
 	@OneToMany(targetEntity = Candidate.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "requestId", referencedColumnName = "id")
-	private List<Candidate> candidates;	
-		
+	private List<Candidate> candidates;
+
 }

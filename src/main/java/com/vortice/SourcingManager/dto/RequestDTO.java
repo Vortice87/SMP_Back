@@ -9,9 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * The Class RequestDTO.
- */
+
 @Getter
 @Setter
 public class RequestDTO {
@@ -29,10 +27,13 @@ public class RequestDTO {
 	private String profile;
 
 	/** The n resources. */
-	private String nResources;
+	private String resources;
 
 	/** The start date. */
 	private Date startDate;
+	
+	/** The status. */
+	private String status;
 	
 	/** The desc task. */
 	private String descTask;
@@ -42,6 +43,5 @@ public class RequestDTO {
 
 	/** The candidates. */
 	private List<CandidateDTO> candidates;
-
 	
 }

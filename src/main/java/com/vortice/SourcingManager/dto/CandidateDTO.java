@@ -3,15 +3,12 @@ package com.vortice.SourcingManager.dto;
 import java.sql.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CandidateDTO {
+public class CandidateDTO{
 	
     /** The candidate id. */
     private Integer candidateId;
@@ -24,6 +21,9 @@ public class CandidateDTO {
 
     /** The created date. */
     private Date createdDate;
+    
+    /** The interview date. */
+    private Date interviewDate;
 
 	/** The comments. */
 	private List<CommentDTO> comments;

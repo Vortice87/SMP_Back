@@ -26,8 +26,9 @@ public class RequestMapper {
 		newDTO.setPetitioner(UserAccountMapper.ToDTO(request.getPetitioner()));
 		newDTO.setCreationDate(request.getCreationDate());
 		newDTO.setProfile(request.getProfile());
-		newDTO.setNResources(request.getNResources());
+		newDTO.setResources(request.getResources());
 		newDTO.setStartDate(request.getStartDate());
+		newDTO.setStatus(request.getStatus());
 		newDTO.setDescTask(request.getDescTask());
 
 		if (request.getReqTechs() != null && request.getReqTechs().size() > 0) {
@@ -40,7 +41,7 @@ public class RequestMapper {
 		if (request.getCandidates() != null && request.getCandidates().size() > 0) {
 			newDTO.setCandidates(new ArrayList<CandidateDTO>());
 			for (Candidate candidate : request.getCandidates()) {
-				newDTO.getCandidates().add(CandidateMapper.ToDTO(candidate));
+				newDTO.getCandidates().add(CandidateMapper.ToDTOwithoutRelationships(candidate));
 			}
 		}
 
@@ -59,8 +60,9 @@ public class RequestMapper {
 		newDTO.setPetitioner(UserAccountMapper.ToDTO(request.getPetitioner()));
 		newDTO.setCreationDate(request.getCreationDate());
 		newDTO.setProfile(request.getProfile());
-		newDTO.setNResources(request.getNResources());
+		newDTO.setResources(request.getResources());
 		newDTO.setStartDate(request.getStartDate());
+		newDTO.setStatus(request.getStatus());
 		newDTO.setDescTask(request.getDescTask());
 		return newDTO;
 	}
@@ -78,8 +80,9 @@ public class RequestMapper {
 		request.setPetitioner(null);
 		request.setCreationDate(dto.getCreationDate());
 		request.setProfile(dto.getProfile());
-		request.setNResources(dto.getNResources());
+		request.setResources(dto.getResources());
 		request.setStartDate(dto.getStartDate());
+		request.setStatus(dto.getStatus());
 		request.setDescTask(dto.getDescTask());
 
 		if (dto.getReqTechs() != null && dto.getReqTechs().size() > 0) {
@@ -88,6 +91,7 @@ public class RequestMapper {
 				request.getReqTechs().add(ReqTechnicalMapper.DTOto(r));
 			}
 		}
+		
 		if (dto.getCandidates() != null && dto.getCandidates().size() > 0) {
 			request.setCandidates(new ArrayList<Candidate>());
 			for (CandidateDTO candidate : dto.getCandidates()) {
