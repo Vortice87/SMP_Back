@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vortice.SourcingManager.dto.RequestDTO;
-import com.vortice.SourcingManager.services.CandidateService;
 import com.vortice.SourcingManager.services.impl.RequestServiceImpl;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class RequestController.
  */
@@ -28,11 +28,7 @@ public class RequestController {
 	/** The request service. */
 	@Autowired
 	private RequestServiceImpl requestService;
-	
-	/** The candidate service. */
-	@Autowired
-	private CandidateService candidateService;
-	
+		
 	/**
 	 * Creates the request.
 	 *
@@ -67,7 +63,30 @@ public class RequestController {
 	@GetMapping("/requestById/{requestId}")
 	@ResponseBody
 	public RequestDTO getRequestByID(@PathVariable("requestId") Integer requestId) {
-		return this.requestService.getRequestById(requestId);
+		return this.requestService.getRequestDTOById(requestId);
 	}
-		
+	
+	/**
+	 * Close request.
+	 *
+	 * @param requestId the request id
+	 * @return true, if successful
+	 */
+	@GetMapping("/closeRequest/{requestId}")
+	@ResponseBody
+	public boolean closeRequest(@PathVariable("requestId") Integer requestId) {
+		return this.requestService.changeRequestStatus(requestId, "Cerrada");
+	}
+	
+	/**
+	 * Open request.
+	 *
+	 * @param requestId the request id
+	 * @return true, if successful
+	 */
+	@GetMapping("/openRequest/{requestId}")
+	@ResponseBody
+	public boolean openRequest(@PathVariable("requestId") Integer requestId) {
+		return this.requestService.changeRequestStatus(requestId, "Abierta");
+	}
 }

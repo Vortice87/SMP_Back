@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.vortice.SourcingManager.dto.RequestDTO;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface RequestService.
  */
@@ -15,7 +16,16 @@ public interface RequestService {
 	 * @param id the id
 	 * @return the request by id
 	 */
-	public RequestDTO getRequestById(Integer id);
+	public RequestDTO getRequestDTOById(Integer id);
+	
+	/**
+	 * Change request status.
+	 *
+	 * @param id the id
+	 * @param status the status
+	 * @return true, if successful
+	 */
+	public boolean changeRequestStatus(Integer id, String status);
 	
 	/**
 	 * Creates the request.

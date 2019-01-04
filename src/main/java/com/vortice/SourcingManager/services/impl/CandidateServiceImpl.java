@@ -13,7 +13,9 @@ import com.vortice.SourcingManager.entities.Request;
 import com.vortice.SourcingManager.mappers.CandidateMapper;
 import com.vortice.SourcingManager.mappers.CommentMapper;
 import com.vortice.SourcingManager.services.CandidateService;
+import com.vortice.SourcingManager.services.RequestService;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CandidateServiceImpl.
  */
@@ -27,6 +29,10 @@ public class CandidateServiceImpl implements CandidateService {
 	/** The request dao. */
 	@Autowired
 	private RequestDao requestDao;
+	
+	/** The request service. */
+	@Autowired
+	private RequestService requestService;
 
 	/** The comment dao. */
 	@Autowired
@@ -44,6 +50,11 @@ public class CandidateServiceImpl implements CandidateService {
 		candidate.setRequest(request);
 		this.candidateDao.save(candidate);
 		success = this.candidateDao.exists(candidate.getCandidateId());
+		
+		Request currentRequest = this.requestDao.findById(candidateDTO.getRequestId());
+		if(currentRequest.getCandidates().size() > 0) {
+			this.requestService.changeRequestStatus(candidateDTO.getRequestId(), "En proceso");
+		}
 
 		return success;
 	}

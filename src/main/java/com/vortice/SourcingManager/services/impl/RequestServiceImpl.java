@@ -32,7 +32,7 @@ public class RequestServiceImpl implements RequestService{
 	 * @see com.vortice.SourcingManager.services.RequestService#getRequestById(java.lang.Integer)
 	 */
 	@Override
-	public RequestDTO getRequestById(Integer id) {
+	public RequestDTO getRequestDTOById(Integer id) {
 		
 		Request request = this.requestDao.findById(id);
 		RequestDTO dto = RequestMapper.ToDTOwithRelationships(request);
@@ -69,6 +69,19 @@ public class RequestServiceImpl implements RequestService{
 		}
 		
 		return requestDtoList;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.RequestService#changeRequestStatus(java.lang.Integer, java.lang.String)
+	 */
+	@Override
+	public boolean changeRequestStatus(Integer id, String status) {
+		Request request = this.requestDao.findById(id);
+		request.setStatus(status);
+		if(this.requestDao.save(request) != null) {
+			return true;			
+		}
+		return false;
 	}
 	
 

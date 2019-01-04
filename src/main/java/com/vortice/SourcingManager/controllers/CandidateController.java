@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vortice.SourcingManager.dto.CandidateDTO;
 import com.vortice.SourcingManager.dto.CommentDTO;
 import com.vortice.SourcingManager.dto.DocumentDTO;
+import com.vortice.SourcingManager.entities.Request;
 import com.vortice.SourcingManager.services.CandidateService;
+import com.vortice.SourcingManager.services.RequestService;
 
 /**
  * The Class CandidateController.
@@ -29,7 +31,7 @@ public class CandidateController {
 	/** The candidate service. */
 	@Autowired
 	private CandidateService candidateService;
-	
+		
 	/**
 	 * Gets the candidate by id.
 	 *
