@@ -14,6 +14,7 @@ import com.vortice.SourcingManager.entities.UserAccount;
 import com.vortice.SourcingManager.mappers.RequestMapper;
 import com.vortice.SourcingManager.services.RequestService;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class RequestServiceImpl.
  */
@@ -82,6 +83,18 @@ public class RequestServiceImpl implements RequestService{
 			return true;			
 		}
 		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.RequestService#deleteRequest(java.lang.Integer)
+	 */
+	@Override
+	public boolean deleteRequest(Integer id) {
+		this.requestDao.delete(id);
+		if(this.requestDao.exists(id)) {
+			return false;
+		}
+		return true;
 	}
 	
 

@@ -36,6 +36,14 @@ public interface RequestService {
 	public boolean createRequest(RequestDTO request);
 	
 	/**
+	 * Delete request.
+	 *
+	 * @param id the id
+	 * @return true, if successful
+	 */
+	public boolean deleteRequest(Integer id);
+	
+	/**
 	 * Gets the all.
 	 *
 	 * @return the all

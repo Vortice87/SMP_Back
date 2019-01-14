@@ -43,6 +43,18 @@ public class RequestController {
 	}
 	
 	/**
+	 * Delete request.
+	 *
+	 * @param requestId the request id
+	 * @return true, if successful
+	 */
+	@GetMapping("/deleteRequest/{requestId}")
+	@ResponseBody
+	public boolean deleteRequest(@PathVariable("requestId") Integer requestId) {
+		return this.requestService.deleteRequest(requestId);
+	}
+	
+	/**
 	 * Gets the all.
 	 *
 	 * @return the all
