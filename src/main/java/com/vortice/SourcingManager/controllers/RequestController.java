@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vortice.SourcingManager.dto.RequestDTO;
+import com.vortice.SourcingManager.dto.RequestFilterDTO;
 import com.vortice.SourcingManager.services.impl.RequestServiceImpl;
 
 // TODO: Auto-generated Javadoc
@@ -64,6 +65,13 @@ public class RequestController {
 	public List<RequestDTO> getAll() {
 		List<RequestDTO> list = requestService.getAll();
 		return list;
+	}
+	
+	@PostMapping("/findRequests")
+	@ResponseBody
+	public List<RequestDTO> findRequests(@RequestBody RequestFilterDTO filtro){
+		
+		return this.requestService.findRequests(filtro);
 	}
 	
 	/**

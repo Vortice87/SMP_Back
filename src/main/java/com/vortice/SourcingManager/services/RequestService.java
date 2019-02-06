@@ -3,6 +3,7 @@ package com.vortice.SourcingManager.services;
 import java.util.List;
 
 import com.vortice.SourcingManager.dto.RequestDTO;
+import com.vortice.SourcingManager.dto.RequestFilterDTO;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -49,5 +50,14 @@ public interface RequestService {
 	 * @return the all
 	 */
 	public List<RequestDTO> getAll();
+	
+
+	/**
+	 * Find requests.
+	 *
+	 * @param filtro the filtro
+	 * @return the list
+	 */
+	public List<RequestDTO> findRequests(RequestFilterDTO filtro);
 
 }

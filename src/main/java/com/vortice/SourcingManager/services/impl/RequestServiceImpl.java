@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.vortice.SourcingManager.dao.RequestDao;
 import com.vortice.SourcingManager.dao.UserDao;
 import com.vortice.SourcingManager.dto.RequestDTO;
+import com.vortice.SourcingManager.dto.RequestFilterDTO;
 import com.vortice.SourcingManager.entities.Request;
 import com.vortice.SourcingManager.entities.UserAccount;
 import com.vortice.SourcingManager.mappers.RequestMapper;
@@ -71,6 +72,22 @@ public class RequestServiceImpl implements RequestService{
 		
 		return requestDtoList;
 	}
+	
+	@Override
+	public List<RequestDTO> findRequests(RequestFilterDTO filtro) {
+		
+
+		List<Request> requestList = requestDao.FindAllWithDescriptionQuery("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		List<RequestDTO> requestDtoList = new ArrayList<RequestDTO>();
+		
+		for(Request request: requestList) {
+			requestDtoList.add(RequestMapper.ToDTOwithoutRelationships(request));
+		}
+		
+		return requestDtoList;
+	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see com.vortice.SourcingManager.services.RequestService#changeRequestStatus(java.lang.Integer, java.lang.String)
@@ -96,6 +113,6 @@ public class RequestServiceImpl implements RequestService{
 		}
 		return true;
 	}
-	
+
 
 }
