@@ -1,5 +1,8 @@
 package com.vortice.SourcingManager.dao;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.vortice.SourcingManager.entities.UserAccount;
@@ -33,5 +36,8 @@ public interface UserDao extends CrudRepository<UserAccount, Integer>{
 	 * @return the user account
 	 */
 	public UserAccount findById(Integer id);
+	
+//	@Query(value="SELECT * FROM USER WHERE PROFILE != 'rrhh'", nativeQuery= true)
+//	public List<UserAccount> findAllRequester();
 
 }

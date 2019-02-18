@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.vortice.SourcingManager.dao.RequestDao;
 import com.vortice.SourcingManager.dao.UserDao;
@@ -62,7 +64,8 @@ public class RequestServiceImpl implements RequestService{
 	@Override
 	public List<RequestDTO> getAll() {
 		
-		Iterator<Request> iterator = requestDao.findAll().iterator();
+		Pageable pageable = new PageRequest(1,5);
+		Iterator<Request> iterator = requestDao.findAll(pageable).iterator();
 		List<RequestDTO> requestDtoList = new ArrayList<RequestDTO>();
 		
 		while(iterator.hasNext()) {
@@ -76,8 +79,22 @@ public class RequestServiceImpl implements RequestService{
 	@Override
 	public List<RequestDTO> findRequests(RequestFilterDTO filtro) {
 		
+		// FindAllWithDescriptionQuery
+		List<Request> requestList = null;
 
-		List<Request> requestList = requestDao.FindAllWithDescriptionQuery("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		if(filtro.getFechaDesde() == null && filtro.getFechaHasta() == null && filtro.getSolicitante() != 0) {
+			requestList = requestDao.findRequestWithOutDateWithRequester("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		} 
+		if(filtro.getFechaDesde() == null && filtro.getFechaHasta() == null && filtro.getSolicitante() == 0) {
+			requestList = requestDao.findRequestWithOutDateAndRequester("%"+filtro.getPerfil()+"%","%"+filtro.getTecnologia()+"%" ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		} 
+		if (filtro.getFechaDesde() != null && filtro.getFechaHasta() != null && filtro.getSolicitante() != 0){
+			requestList = requestDao.findRequestWithDateAndRequester("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		}
+		if (filtro.getFechaDesde() != null && filtro.getFechaHasta() != null && filtro.getSolicitante() == 0){
+			requestList = requestDao.findRequestWithDateWithOutRequester("%"+filtro.getPerfil()+"%","%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		}
+
 		List<RequestDTO> requestDtoList = new ArrayList<RequestDTO>();
 		
 		for(Request request: requestList) {

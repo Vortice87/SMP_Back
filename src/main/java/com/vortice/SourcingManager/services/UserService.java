@@ -3,8 +3,10 @@ package com.vortice.SourcingManager.services;
 
 import java.util.List;
 
+import com.vortice.SourcingManager.dto.RequesterDTO;
 import com.vortice.SourcingManager.dto.UserAccountDTO;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface UserService.
  */
@@ -25,6 +27,13 @@ public interface UserService {
 	 * @return the all users
 	 */
 	public List<UserAccountDTO> getAllUsers();
+	
+	/**
+	 * Gets the all requesters.
+	 *
+	 * @return the all requesters
+	 */
+	public List<RequesterDTO> getAllRequesters();
 	
 	/**
 	 * Creates the user.

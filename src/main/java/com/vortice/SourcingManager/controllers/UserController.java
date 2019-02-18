@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vortice.SourcingManager.dto.RequesterDTO;
 import com.vortice.SourcingManager.dto.UserAccountDTO;
 import com.vortice.SourcingManager.services.impl.UserAccountServiceImpl;
 
@@ -117,6 +118,20 @@ public class UserController {
 		
 		List<UserAccountDTO> userList = userService.getAllUsers();
 		return userList;
+		
+	}
+	
+	/**
+	 * Gets the all requesters.
+	 *
+	 * @return the all requesters
+	 */
+	@GetMapping("/allRequesters")
+	@ResponseBody
+	public List<RequesterDTO> getAllRequesters(){
+		
+		List<RequesterDTO> requestersList = userService.getAllRequesters();
+		return requestersList;
 		
 	}
 	

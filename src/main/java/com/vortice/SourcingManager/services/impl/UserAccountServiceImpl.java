@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 import com.vortice.SourcingManager.dao.UserDao;
 import com.vortice.SourcingManager.dto.RequestDTO;
+import com.vortice.SourcingManager.dto.RequesterDTO;
 import com.vortice.SourcingManager.dto.UserAccountDTO;
 import com.vortice.SourcingManager.entities.Request;
 import com.vortice.SourcingManager.entities.UserAccount;
+import com.vortice.SourcingManager.mappers.RequesterMapper;
 import com.vortice.SourcingManager.mappers.UserAccountMapper;
 import com.vortice.SourcingManager.services.UserService;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class UserAccountServiceImpl.
  */
@@ -55,10 +58,10 @@ public class UserAccountServiceImpl implements UserService {
 			for(UserAccount userAccount: userList) {
 				listDTO.add(UserAccountMapper.ToDTO(userAccount));
 			}
-			return listDTO;
 		}
 		return listDTO;
 	}
+	
 
 	/* (non-Javadoc)
 	 * @see com.vortice.SourcingManager.services.UserService#createUser(com.vortice.SourcingManager.dto.UserAccountDTO)
@@ -117,6 +120,30 @@ public class UserAccountServiceImpl implements UserService {
 		UserAccount user = this.dao.findById(id);
 		UserAccountDTO userDTO = UserAccountMapper.ToDTO(user);
 		return userDTO;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.UserService#getAllRequesters()
+	 */
+	@Override
+	public List<RequesterDTO> getAllRequesters() {
+
+		List<UserAccount> userList = Lists.newArrayList(this.dao.findAll());
+		List<UserAccountDTO> listDTO = new ArrayList<>();
+		List<RequesterDTO> requestersListDTO = new ArrayList<>();
+		if(userList != null && userList.size() > 0) {
+			for(UserAccount userAccount: userList) {
+				listDTO.add(UserAccountMapper.ToDTO(userAccount));
+			}
+		}
+		if(listDTO != null && listDTO.size() > 0) {
+			for(UserAccountDTO userAccountDTO: listDTO) {
+				if("area".equals(userAccountDTO.getProfile())) {
+					requestersListDTO.add(RequesterMapper.UserDTOtoRequesterDTO(userAccountDTO));
+				}
+			}
+		}
+		return requestersListDTO;
 	}
 
 
