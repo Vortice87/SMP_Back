@@ -5,10 +5,17 @@ import java.sql.Date;
 import lombok.Getter;
 import lombok.Setter;
 
+// TODO: Auto-generated Javadoc
 /**
  * Gets the estado.
  *
  * @return the estado
+ */
+
+/**
+ * Gets the limit.
+ *
+ * @return the limit
  */
 @Getter
 
@@ -16,6 +23,12 @@ import lombok.Setter;
  * Sets the estado.
  *
  * @param estado the new estado
+ */
+
+/**
+ * Sets the limit.
+ *
+ * @param limit the new limit
  */
 @Setter
 public class RequestFilterDTO {
@@ -40,4 +53,10 @@ public class RequestFilterDTO {
 	
 	/** The estado. */
 	private String estado;
+	
+	/** The index. */
+	private Integer index;
+	
+	/** The limit. */
+	private Integer limit;
 }

@@ -56,21 +56,14 @@ public class RequestController {
 	}
 	
 	/**
-	 * Gets the all.
+	 * Find requests.
 	 *
-	 * @return the all
+	 * @param filtro the filtro
+	 * @return the list
 	 */
-	@GetMapping("/all")
-	@ResponseBody
-	public List<RequestDTO> getAll() {
-		List<RequestDTO> list = requestService.getAll();
-		return list;
-	}
-	
 	@PostMapping("/findRequests")
 	@ResponseBody
 	public List<RequestDTO> findRequests(@RequestBody RequestFilterDTO filtro){
-		
 		return this.requestService.findRequests(filtro);
 	}
 	
@@ -84,6 +77,18 @@ public class RequestController {
 	@ResponseBody
 	public RequestDTO getRequestByID(@PathVariable("requestId") Integer requestId) {
 		return this.requestService.getRequestDTOById(requestId);
+	}
+	
+	/**
+	 * Gets the request DTO by id with out relationships.
+	 *
+	 * @param requestId the request id
+	 * @return the request DTO by id with out relationships
+	 */
+	@GetMapping("/requestByIdWithOutRelationships/{requestId}")
+	@ResponseBody
+	public RequestDTO getRequestDTOByIdWithOutRelationships(@PathVariable("requestId") Integer requestId) {
+		return this.requestService.getRequestDTOByIdWithOutRelationships(requestId);
 	}
 	
 	/**
@@ -108,5 +113,17 @@ public class RequestController {
 	@ResponseBody
 	public boolean openRequest(@PathVariable("requestId") Integer requestId) {
 		return this.requestService.changeRequestStatus(requestId, "Abierta");
+	}
+		
+	/**
+	 * Count by requests filter.
+	 *
+	 * @param filtro the filtro
+	 * @return the integer
+	 */
+	@PostMapping("/countByRequestsFilter")
+	@ResponseBody
+	public Integer countByRequestsFilter(@RequestBody RequestFilterDTO filtro) {
+		return this.requestService.countByRequestsFilter(filtro);
 	}
 }

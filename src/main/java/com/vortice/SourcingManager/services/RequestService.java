@@ -20,6 +20,14 @@ public interface RequestService {
 	public RequestDTO getRequestDTOById(Integer id);
 	
 	/**
+	 * Gets the request DTO by id with out relationships.
+	 *
+	 * @param id the id
+	 * @return the request DTO by id with out relationships
+	 */
+	public RequestDTO getRequestDTOByIdWithOutRelationships(Integer id);
+	
+	/**
 	 * Change request status.
 	 *
 	 * @param id the id
@@ -43,15 +51,15 @@ public interface RequestService {
 	 * @return true, if successful
 	 */
 	public boolean deleteRequest(Integer id);
-	
+		
 	/**
-	 * Gets the all.
+	 * Count by requests filter.
 	 *
-	 * @return the all
+	 * @param filtro the filtro
+	 * @return the integer
 	 */
-	public List<RequestDTO> getAll();
+	public Integer countByRequestsFilter(RequestFilterDTO filtro);
 	
-
 	/**
 	 * Find requests.
 	 *

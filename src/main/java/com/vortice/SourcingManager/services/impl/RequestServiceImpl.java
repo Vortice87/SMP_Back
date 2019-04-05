@@ -17,7 +17,6 @@ import com.vortice.SourcingManager.entities.UserAccount;
 import com.vortice.SourcingManager.mappers.RequestMapper;
 import com.vortice.SourcingManager.services.RequestService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RequestServiceImpl.
  */
@@ -43,6 +42,15 @@ public class RequestServiceImpl implements RequestService{
 		
 		return dto;
 	}
+	
+	@Override
+	public RequestDTO getRequestDTOByIdWithOutRelationships(Integer id) {
+		
+		Request request = this.requestDao.findById(id);
+		RequestDTO dto = RequestMapper.ToDTOwithoutRelationships(request);
+		
+		return dto;
+	}
 
 	/* (non-Javadoc)
 	 * @see com.vortice.SourcingManager.services.RequestService#createRequest(com.vortice.SourcingManager.dto.RequestDTO)
@@ -58,24 +66,10 @@ public class RequestServiceImpl implements RequestService{
 		return success;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vortice.SourcingManager.services.RequestService#getAll()
-	 */
-	@Override
-	public List<RequestDTO> getAll() {
-		
-		Pageable pageable = new PageRequest(1,5);
-		Iterator<Request> iterator = requestDao.findAll(pageable).iterator();
-		List<RequestDTO> requestDtoList = new ArrayList<RequestDTO>();
-		
-		while(iterator.hasNext()) {
-			
-			requestDtoList.add(RequestMapper.ToDTOwithoutRelationships(iterator.next()));
-		}
-		
-		return requestDtoList;
-	}
 	
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.RequestService#findRequests(com.vortice.SourcingManager.dto.RequestFilterDTO)
+	 */
 	@Override
 	public List<RequestDTO> findRequests(RequestFilterDTO filtro) {
 		
@@ -83,16 +77,16 @@ public class RequestServiceImpl implements RequestService{
 		List<Request> requestList = null;
 
 		if(filtro.getFechaDesde() == null && filtro.getFechaHasta() == null && filtro.getSolicitante() != 0) {
-			requestList = requestDao.findRequestWithOutDateWithRequester("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+			requestList = requestDao.findRequestWithOutDateWithRequester("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%", filtro.getIndex(), filtro.getLimit());
 		} 
 		if(filtro.getFechaDesde() == null && filtro.getFechaHasta() == null && filtro.getSolicitante() == 0) {
-			requestList = requestDao.findRequestWithOutDateAndRequester("%"+filtro.getPerfil()+"%","%"+filtro.getTecnologia()+"%" ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+			requestList = requestDao.findRequestWithOutDateAndRequester("%"+filtro.getPerfil()+"%","%"+filtro.getTecnologia()+"%" ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%", filtro.getIndex(), filtro.getLimit());
 		} 
 		if (filtro.getFechaDesde() != null && filtro.getFechaHasta() != null && filtro.getSolicitante() != 0){
-			requestList = requestDao.findRequestWithDateAndRequester("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+			requestList = requestDao.findRequestWithDateAndRequester("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%",filtro.getIndex(), filtro.getLimit());
 		}
 		if (filtro.getFechaDesde() != null && filtro.getFechaHasta() != null && filtro.getSolicitante() == 0){
-			requestList = requestDao.findRequestWithDateWithOutRequester("%"+filtro.getPerfil()+"%","%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+			requestList = requestDao.findRequestWithDateWithOutRequester("%"+filtro.getPerfil()+"%","%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%", filtro.getIndex(), filtro.getLimit());
 		}
 
 		List<RequestDTO> requestDtoList = new ArrayList<RequestDTO>();
@@ -131,5 +125,25 @@ public class RequestServiceImpl implements RequestService{
 		return true;
 	}
 
+	@Override
+	public Integer countByRequestsFilter(RequestFilterDTO filtro) {
+		
+		Integer count = 0;
+		
+		if(filtro.getFechaDesde() == null && filtro.getFechaHasta() == null && filtro.getSolicitante() != 0) {
+			count = requestDao.countRequestWithOutDateWithRequester("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		} 
+		if(filtro.getFechaDesde() == null && filtro.getFechaHasta() == null && filtro.getSolicitante() == 0) {
+			count = requestDao.countRequestWithOutDateAndRequester("%"+filtro.getPerfil()+"%","%"+filtro.getTecnologia()+"%" ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		} 
+		if (filtro.getFechaDesde() != null && filtro.getFechaHasta() != null && filtro.getSolicitante() != 0){
+			count = requestDao.countRequestWithDateAndRequester("%"+filtro.getPerfil()+"%",filtro.getSolicitante(),"%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		}
+		if (filtro.getFechaDesde() != null && filtro.getFechaHasta() != null && filtro.getSolicitante() == 0){
+			count = requestDao.countRequestWithDateWithOutRequester("%"+filtro.getPerfil()+"%","%"+filtro.getTecnologia()+"%" ,filtro.getFechaDesde(), filtro.getFechaHasta() ,"%"+filtro.getDescripcion()+"%","%"+filtro.getEstado()+"%");
+		}
+		
+		return count;
+	}
 
 }
