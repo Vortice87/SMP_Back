@@ -29,7 +29,7 @@ public class Detalle {
 	private String nombreDetalle;
 	
 	/** The area. */
-	@ManyToOne(targetEntity = Area.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Area.class)
 	@JoinColumn(name = "area", referencedColumnName = "areaId")
 	private Area area;
 

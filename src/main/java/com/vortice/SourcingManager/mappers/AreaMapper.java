@@ -28,6 +28,8 @@ public class AreaMapper {
 			for(Detalle d: area.getDetalles()) {
 				newdto.getDetalles().add(DetalleMapper.toDTO(d));
 			}
+		} else {
+			newdto.setDetalles(new ArrayList<DetalleDTO>());
 		}
 		
 		return newdto;
@@ -50,6 +52,20 @@ public class AreaMapper {
 				area.getDetalles().add(DetalleMapper.DTOto(detalleDto));
 			}
 		}
+		return area;
+	}
+	
+	public static AreaDTO toDTOwithNoRelationship(Area area) {
+		AreaDTO newdto = new AreaDTO();
+		newdto.setAreaId(area.getAreaId());
+		newdto.setNombreArea(area.getNombreArea());	
+		return newdto;
+	}
+	
+	public static Area DTOtoWithNoRelationship(AreaDTO dto) {
+		Area area = new Area();
+		area.setAreaId(dto.getAreaId());
+		area.setNombreArea(dto.getNombreArea());
 		return area;
 	}
 }

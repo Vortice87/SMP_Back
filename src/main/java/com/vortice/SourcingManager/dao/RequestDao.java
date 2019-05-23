@@ -60,5 +60,6 @@ public interface RequestDao extends CrudRepository<Request, Integer>, PagingAndS
 	public Integer countRequestWithDateWithOutRequester(String perfil, String tecnologia, Date fechaDesde,
 			Date fechaHata, String descripcion, String estado);
 
+	public List<Request> findByPetitioner(Integer id);
 	
 }
