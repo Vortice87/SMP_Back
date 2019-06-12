@@ -30,7 +30,7 @@ public class Area {
 	private String nombreArea;
 	
 	/** The detalles. */
-	@OneToMany(targetEntity = Detalle.class ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = Detail.class ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "area", referencedColumnName = "areaId")
-	private List<Detalle> detalles;
+	private List<Detail> detalles;
 }

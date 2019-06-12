@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.vortice.SourcingManager.dto.AreaDTO;
 import com.vortice.SourcingManager.dto.DetalleDTO;
 import com.vortice.SourcingManager.entities.Area;
-import com.vortice.SourcingManager.entities.Detalle;
+import com.vortice.SourcingManager.entities.Detail;
 
 /**
  * The Class AreaMapper.
@@ -25,7 +25,7 @@ public class AreaMapper {
 		newdto.setNombreArea(area.getNombreArea());
 		if(area.getDetalles() != null &&  area.getDetalles().size() > 0) {
 			newdto.setDetalles(new ArrayList<DetalleDTO>());
-			for(Detalle d: area.getDetalles()) {
+			for(Detail d: area.getDetalles()) {
 				newdto.getDetalles().add(DetalleMapper.toDTO(d));
 			}
 		} else {
@@ -47,7 +47,7 @@ public class AreaMapper {
 		area.setAreaId(dto.getAreaId());
 		area.setNombreArea(dto.getNombreArea());
 		if(dto.getDetalles() != null && dto.getDetalles().size() > 0) {
-			area.setDetalles(new ArrayList<Detalle>());
+			area.setDetalles(new ArrayList<Detail>());
 			for(DetalleDTO detalleDto: dto.getDetalles()) {
 				area.getDetalles().add(DetalleMapper.DTOto(detalleDto));
 			}

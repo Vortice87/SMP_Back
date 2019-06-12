@@ -8,7 +8,7 @@ import com.vortice.SourcingManager.dao.DetailDao;
 import com.vortice.SourcingManager.dto.AreaDTO;
 import com.vortice.SourcingManager.dto.DetalleDTO;
 import com.vortice.SourcingManager.entities.Area;
-import com.vortice.SourcingManager.entities.Detalle;
+import com.vortice.SourcingManager.entities.Detail;
 import com.vortice.SourcingManager.mappers.AreaMapper;
 import com.vortice.SourcingManager.mappers.DetalleMapper;
 import com.vortice.SourcingManager.services.DetalleService;
@@ -41,7 +41,7 @@ public class DetalleServiceImpl implements DetalleService{
 	 */
 	@Override
 	public boolean createDetalle(DetalleDTO detalleDto) {
-		Detalle detalle = DetalleMapper.DTOto(detalleDto);
+		Detail detalle = DetalleMapper.DTOto(detalleDto);
 		Area area = this.areaDao.findByAreaId(detalleDto.getAreaId());
 		detalle.setArea(area);
 		this.detailDao.save(detalle);

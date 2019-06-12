@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name="DETALLE")
-public class Detalle {
+public class Detail {
 	
 	/** The detalle id. */
 	@Id

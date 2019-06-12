@@ -2,12 +2,12 @@ package com.vortice.SourcingManager.dao;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.vortice.SourcingManager.entities.Detalle;
+import com.vortice.SourcingManager.entities.Detail;
 
 /**
  * The Interface DetailDao.
  */
-public interface DetailDao extends CrudRepository<Detalle, Integer>{
+public interface DetailDao extends CrudRepository<Detail, Integer>{
 	
 	/**
 	 * Find by nombre detalle.
@@ -15,7 +15,7 @@ public interface DetailDao extends CrudRepository<Detalle, Integer>{
 	 * @param detailname the detailname
 	 * @return the detalle
 	 */
-	public Detalle findByNombreDetalle(String detailname);
+	public Detail findByNombreDetalle(String detailname);
 	
 	/**
 	 * Find by detalle id.
@@ -23,6 +23,6 @@ public interface DetailDao extends CrudRepository<Detalle, Integer>{
 	 * @param id the id
 	 * @return the detalle
 	 */
-	public Detalle findByDetalleId(Integer id);
+	public Detail findByDetalleId(Integer id);
 	
 }

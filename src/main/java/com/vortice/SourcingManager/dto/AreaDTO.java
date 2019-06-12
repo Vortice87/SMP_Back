@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.vortice.SourcingManager.entities.Detalle;
+import com.vortice.SourcingManager.entities.Detail;
 
 import lombok.Getter;
 import lombok.Setter;

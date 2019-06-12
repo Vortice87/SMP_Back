@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.vortice.SourcingManager.dto.AreaDTO;
 import com.vortice.SourcingManager.dto.DetalleDTO;
+import com.vortice.SourcingManager.entities.Configuration;
 import com.vortice.SourcingManager.services.AreaService;
+import com.vortice.SourcingManager.services.ConfigurationService;
 import com.vortice.SourcingManager.services.DetalleService;
 
 /**
@@ -31,6 +33,11 @@ public class ConfigurationController {
 	/** The detalle service. */
 	@Autowired
 	private DetalleService detalleService;
+	
+	/** The configuration. */
+	@Autowired
+	private ConfigurationService configuration;
+
 	
 	/**
 	 * Find area by id.
@@ -138,7 +145,7 @@ public class ConfigurationController {
 	 */
 	@GetMapping("/exists/{areaname}")
 	@ResponseBody
-	public boolean userExists(@PathVariable String areaname) {
+	public boolean userExists(@PathVariable("areaname") String areaname) {
 		if(this.areaService.areaExists(areaname)) {
 			return true;
 		}
@@ -153,11 +160,35 @@ public class ConfigurationController {
 	 */
 	@GetMapping("/detailExists/{detailname}")
 	@ResponseBody
-	public boolean detailExists(@PathVariable String detailname) {
+	public boolean detailExists(@PathVariable("detailname") String detailname) {
 		if(this.detalleService.detalleExists(detailname)) {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Gets the configuration by id.
+	 *
+	 * @param configId the config id
+	 * @return the configuration by id
+	 */
+	@GetMapping("/getConfiguration/{configId}")
+	@ResponseBody
+	public Configuration getConfigurationById(@PathVariable("configId") Integer configId) {
+		return this.configuration.findByConfigId(configId);
+	}
+	
+	/**
+	 * Save configuration.
+	 *
+	 * @param config the config
+	 * @return true, if successful
+	 */
+	@PostMapping("/saveConfiguration")
+	@ResponseBody
+	public boolean saveConfiguration(@RequestBody Configuration config) {
+		return this.configuration.saveConfig(config);
 	}
 
 }
