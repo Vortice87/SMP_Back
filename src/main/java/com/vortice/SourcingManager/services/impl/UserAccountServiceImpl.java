@@ -146,6 +146,13 @@ public class UserAccountServiceImpl implements UserService {
 		return requestersListDTO;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vortice.SourcingManager.services.UserService#getUsersByProfile(java.lang.String)
+	 */
+	@Override
+	public List<UserAccount> getUsersByProfile(String profile) {
+			return this.dao.findByProfile(profile);
+	}
 
 
 }

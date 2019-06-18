@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.vortice.SourcingManager.dto.RequesterDTO;
 import com.vortice.SourcingManager.dto.UserAccountDTO;
+import com.vortice.SourcingManager.entities.UserAccount;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface UserService.
  */
@@ -27,6 +27,13 @@ public interface UserService {
 	 * @return the all users
 	 */
 	public List<UserAccountDTO> getAllUsers();
+	
+	/**
+	 * Gets the users by profile.
+	 *
+	 * @return the users by profile
+	 */
+	public List<UserAccount> getUsersByProfile(String profile);
 	
 	/**
 	 * Gets the all requesters.

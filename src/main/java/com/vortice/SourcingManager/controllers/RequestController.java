@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vortice.SourcingManager.dto.ContextEmailDTO;
 import com.vortice.SourcingManager.dto.RequestDTO;
 import com.vortice.SourcingManager.dto.RequestFilterDTO;
+import com.vortice.SourcingManager.services.EmailService;
 import com.vortice.SourcingManager.services.impl.RequestServiceImpl;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RequestController.
  */
@@ -29,6 +30,10 @@ public class RequestController {
 	/** The request service. */
 	@Autowired
 	private RequestServiceImpl requestService;
+	
+	/** The email service. */
+	@Autowired
+	private EmailService emailService;
 		
 	/**
 	 * Creates the request.
@@ -125,5 +130,16 @@ public class RequestController {
 	@ResponseBody
 	public Integer countByRequestsFilter(@RequestBody RequestFilterDTO filtro) {
 		return this.requestService.countByRequestsFilter(filtro);
+	}
+	
+	/**
+	 * Send email.
+	 *
+	 * @param context the context
+	 */
+	@PostMapping("/sendEmail")
+	@ResponseBody
+	public void sendEmail(@RequestBody ContextEmailDTO context) {
+		this.emailService.sendSimpleMessage(context.getFrom(), context.getTo(), context.getSubject(), context.getText());
 	}
 }
