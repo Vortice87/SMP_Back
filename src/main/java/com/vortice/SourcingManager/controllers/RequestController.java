@@ -2,6 +2,8 @@ package com.vortice.SourcingManager.controllers;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -136,10 +138,11 @@ public class RequestController {
 	 * Send email.
 	 *
 	 * @param context the context
+	 * @throws MessagingException 
 	 */
 	@PostMapping("/sendEmail")
 	@ResponseBody
-	public void sendEmail(@RequestBody ContextEmailDTO context) {
+	public void sendEmail(@RequestBody ContextEmailDTO context) throws MessagingException {
 		this.emailService.sendSimpleMessage(context.getFrom(), context.getTo(), context.getSubject(), context.getText());
 	}
 }
