@@ -41,6 +41,7 @@ public class EmailServiceImpl implements EmailService{
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setSubject(subject + " - " + from);
         helper.setText("text/html; charset=utf-8", getTemplateNewRequest(text));
+ 
         helper.setTo(getHumanResources());
         this.emailSender.send(message);
         
@@ -48,7 +49,85 @@ public class EmailServiceImpl implements EmailService{
 	
 	public String getTemplateNewRequest(String content) {
 		
-		String template = "<div class=\"row list \" style=\" border-top: 4px solid #F7C03E; padding-top: 15px; border-radius: 5px; background-color: white; box-shadow: 0 1px 4px 0 rgba(0,0,0,.14); margin-right: -15px; margin-left: -15px;\" ><h1 style=\"padding: 20px; \"> DESCRIPCIÓN </h1> <p style=\"padding: 20px; \">"+ content +"</p></div>"; 
+		String template = "<div class=\"row list \" style=\" border-top: 4px solid #F7C03E; padding-top: 15px; border-radius: 5px; background-color: white; box-shadow: 0 1px 4px 0 rgba(0,0,0,.14); margin-right: -15px; margin-left: -15px;\" ><h1 style=\"padding: 20px; \"> <div class=\"col-md-11 row\">\r\n" + 
+				"    <fieldset class=\"form-group\">\r\n" + 
+				"        <div class=\"container\">\r\n" + 
+				"            <div class=\"form-group row\">\r\n" + 
+				"                <label for=\"petitioner\" class=\"col-md-3 col-form-label\">SOLICITANTE</label>\r\n" + 
+				"                <div class=\"col-md-9\">\r\n" + 
+				"                    victor\r\n" + 
+				"                </div>\r\n" + 
+				"            </div>\r\n" + 
+				"            <div class=\"form-group row\">\r\n" + 
+				"                <label for=\"nres\" class=\"col-md-3 col-form-label\">RECURSOS</label>\r\n" + 
+				"                <div class=\"col-md-3\">\r\n" + 
+				"                    4\r\n" + 
+				"                </div>\r\n" + 
+				"            </div>\r\n" + 
+				"            <div class=\"form-group row\">\r\n" + 
+				"                <label for=\"nres\" class=\"col-md-3 col-form-label\">ESTADO</label>\r\n" + 
+				"                <div class=\"col-md-3\">\r\n" + 
+				"                    estado\r\n" + 
+				"                </div>\r\n" + 
+				"            </div>\r\n" + 
+				"\r\n" + 
+				"            <div class=\"form-group row\">\r\n" + 
+				"                <label for=\"destask\" class=\"col-md-3 col-form-label\">DESCRIPCION ROL</label>\r\n" + 
+				"                <div class=\"col-md-9\">\r\n" + 
+				"                    descripcion\r\n" + 
+				"                </div>\r\n" + 
+				"            </div>\r\n" + 
+				"\r\n" + 
+				"            <div class=\"form-group row\">\r\n" + 
+				"                <label for=\"expstartdate\" class=\"col-md-3 col-form-label\">FECHA DE INCORPORACION</label>\r\n" + 
+				"                <div class=\"col-md-3\">\r\n" + 
+				"                    25-01-1987\r\n" + 
+				"                </div>\r\n" + 
+				"            </div>\r\n" + 
+				"        </div>\r\n" + 
+				"    </fieldset>\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"    <fieldset class=\"form-group\">\r\n" + 
+				"        <div class=\"container \">\r\n" + 
+				"            <legend>REQUERIMIENTOS TÉCNICOS</legend>\r\n" + 
+				"            <div class=\"form-group row no-margin-bottom\">\r\n" + 
+				"\r\n" + 
+				"                <div class=\"col-md-4 align-center\">\r\n" + 
+				"                    <label for=\"area\">AREA</label>\r\n" + 
+				"                </div>\r\n" + 
+				"                <div class=\"col-md-3 align-center\">\r\n" + 
+				"                    <label for=\"detalle\">DETALLE</label>\r\n" + 
+				"                </div>\r\n" + 
+				"                <div class=\"col-md-2 align-center\">\r\n" + 
+				"                    <label for=\"expyearsreq\">EXP. AÑOS</label>\r\n" + 
+				"                </div>\r\n" + 
+				"                <div class=\"col-md-2 align-center\">\r\n" + 
+				"                    <label for=\"reqdes2\">REQ / DES</label>\r\n" + 
+				"                </div>\r\n" + 
+				"            </div>\r\n" + 
+				"            <div class=\"cuadro\">\r\n" + 
+				"                <div class=\"container\">\r\n" + 
+				"                    <div class=\"form-group row padding-bottom-reqs animated fadeIn\">\r\n" + 
+				"                        <div class=\"col-md-4 align-center-req\">\r\n" + 
+				"                            area\r\n" + 
+				"                        </div>\r\n" + 
+				"                        <div class=\"col-md-3\">\r\n" + 
+				"                            detalle\r\n" + 
+				"                        </div>\r\n" + 
+				"                        <div class=\"col-md-2\">\r\n" + 
+				"                            exp\r\n" + 
+				"                        </div>\r\n" + 
+				"                        <div class=\"col-md-3\">\r\n" + 
+				"                            req\r\n" + 
+				"                        </div>\r\n" + 
+				"                    </div>\r\n" + 
+				"                </div>\r\n" + 
+				"            </div>\r\n" + 
+				"        </div>\r\n" + 
+				"    </fieldset>\r\n" + 
+				"\r\n" + 
+				"</div>  </div>"; 
 		return template;
 		
 	}
